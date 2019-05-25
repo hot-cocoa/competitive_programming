@@ -3,7 +3,8 @@ private:
     int group_count;
     std::vector<int> par, rank, gsize;
 public:
-    UnionFind(int N) {
+    UnionFind(int N)
+    {
         group_count = N;
 
         par.resize(N);
