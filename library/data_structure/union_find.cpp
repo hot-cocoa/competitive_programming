@@ -4,6 +4,8 @@ private:
     std::vector<int> par, rank, gsize;
 public:
     UnionFind(int N) {
+        group_count = N;
+
         par.resize(N);
         rank.resize(N);
         gsize.resize(N);
