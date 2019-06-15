@@ -4,17 +4,17 @@ struct edge {
         to{to}, cap{cap}, cost{cost}, rev{rev} {}
 };
 
-using vec = std::vector<edge>;
-using Graph = std::vector<vec>;
-
 class MinimumCostFlow {
 private:
+    using vec = std::vector<edge>;
+    using Graph = std::vector<vec>;
     using pii = std::pair<int, int>;
     const int INF = (1 << 29);
     Graph g;
 
 public:
-    MinimumCostFlow(int V) {
+    MinimumCostFlow(int V)
+    {
         g.resize(V);
     }
 
