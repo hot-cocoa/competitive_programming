@@ -1,3 +1,6 @@
+#include <iostream>
+#include <vector>
+
 class StronglyConnectedComponents {
 private:
     using vec = std::vector<int>;

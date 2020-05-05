@@ -1,3 +1,5 @@
+#include <vector>
+
 class UnionFind {
 private:
     int group_count;

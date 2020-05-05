@@ -1,3 +1,6 @@
+#include <vector>
+#include <queue>
+
 struct edge {
     int to, cost;
     edge(int to, int cost) : to{to}, cost{cost} {}

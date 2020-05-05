@@ -1,3 +1,5 @@
+#include <map>
+
 std::map<int, int> prime_factorize(int n)
 {
     std::map<int, int> res;

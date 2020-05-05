@@ -1,3 +1,5 @@
+#include <vector>
+
 class BinaryIndexedTree {
 private:
     int N = 1 << 20;

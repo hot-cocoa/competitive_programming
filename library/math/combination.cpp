@@ -1,3 +1,5 @@
+#include <vector>
+
 using int64 = long long;
 
 class Combination {

@@ -1,3 +1,6 @@
+#include <string>
+#include <vector>
+
 using ull = unsigned long long;
 constexpr ull B = 1000000007UL;
 
