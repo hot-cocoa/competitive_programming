@@ -48,7 +48,8 @@ public:
         return false;
     }
 
-    std::vector<int> calc_shortest_path(int s) {
+    std::vector<int> calc_shortest_path(int s)
+    {
         if (find_negative_loop(s))
             return {};
 
