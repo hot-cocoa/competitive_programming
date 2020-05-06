@@ -114,10 +114,7 @@ public:
 
 class Rotation {
 public:
-    /*
-     * 角度はラジアン単位
-     */
-    static Point rotate(const Point &p, double th)
+    static Point rotate(const Point &p, double th /* => rad */)
     {
         return {
             cos(th) * p.x - sin(th) * p.y,
@@ -139,6 +136,7 @@ public:
     }
 };
 
+// -- CCW用
 enum class CcwIdentification : int {
     COUNTER_CLOCKWISE = +1,
     CLOCKWISE         = -1,
@@ -152,7 +150,10 @@ constexpr int operator * (
 {
     return static_cast<int>(l) * static_cast<int>(r);
 }
-
+/*
+ * [Verified]
+ * http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
+ */
 class CounterClockWise {
 public:
     static CcwIdentification ccw(
@@ -179,6 +180,7 @@ public:
         return CcwIdentification::ON_SEGMENT;
     }
 };
+// --
 
 class Segment {
 public:
@@ -188,6 +190,27 @@ public:
     Segment(const Point &s, const Point &t) : s{s}, t{t} {}
 };
 
+/*
+ * [Verified]
+ * ・projection
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
+ *
+ * ・reflection
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
+ *
+ * ・intersect_ss
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+ *
+ * ・crosspoint_ss
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
+ *
+ * ・distance_ss
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+ *
+ * ・orthogonal_ss
+ * ・parallel_ss
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
+ */
 class SegmentUtil {
 public:
     /*
