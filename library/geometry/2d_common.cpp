@@ -13,6 +13,7 @@ bool equals(T a, T b)
 class Point {
 public:
     double x, y;
+    Point() {}
     Point(double x, double y) : x{x}, y{y} {}
 
     Point operator + (const Point &p) const
@@ -39,17 +40,17 @@ public:
     {
         return x != p.x ? x < p.x : y < p.y;
     }
-
-    std::istream &operator >> (std::istream &is)
-    {
-        return is >> x >> y;
-    }
-
-    std::ostream &operator << (std::ostream os)
-    {
-        return os << "(" << x << " " << y << ")";
-    }
 };
+
+std::istream &operator >> (std::istream &is, Point &p)
+{
+    return is >> p.x >> p.y;
+}
+
+std::ostream &operator << (std::ostream os, Point &p)
+{
+    return os << "(" << p.x << " " << p.y << ")";
+}
 
 using Vector = Point;
 
