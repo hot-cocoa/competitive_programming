@@ -117,7 +117,7 @@ public:
     /*
      * 角度はラジアン単位
      */
-    Point rotate(const Point &p, double th)
+    static Point rotate(const Point &p, double th)
     {
         return {
             cos(th) * p.x - sin(th) * p.y,
@@ -128,12 +128,12 @@ public:
     /*
      * (cx, cy)を中心に回転する
      */
-    Point rotate(const Point &p, double th, double cx, double cy)
+    static Point rotate(const Point &p, double th, double cx, double cy)
     {
         return rotate({p.x - cx, p.y - cy}, th);
     }
 
-    Point rotate90(const Point &p)
+    static Point rotate90(const Point &p)
     {
         return {-p.y, p.x};
     }
@@ -243,7 +243,7 @@ public:
         return a.s + va * cross(vb, b.t - a.s) * (1.0 / cross(vb, va));
     }
 
-    double distance_sp(const Segment &s, const Point &p)
+    static double distance_sp(const Segment &s, const Point &p)
     {
         const auto &abs = PointOperator::abs;
         Point r = projection(s, p);
@@ -253,7 +253,7 @@ public:
         return std::min(abs(s.s - p), abs(s.t - p));
     }
 
-    double distance_ss(const Segment &a, const Segment &b)
+    static double distance_ss(const Segment &a, const Segment &b)
     {
         if (intersect_ss(a, b))
             return 0;
@@ -264,20 +264,14 @@ public:
         );
     }
 
-    /*
-     * 線分の垂直判定
-     */
-    bool orthogonal_ss(const Segment &a, const Segment &b)
+    static bool orthogonal_ss(const Segment &a, const Segment &b)
     {
         Vector va = a.t - a.s;
         Vector vb = b.t - b.s;
         return equals<double>(PointOperator::dot(va, vb), 0);
     }
 
-    /*
-     * 線分の平行判定
-     */
-    bool parallel_ss(const Segment &a, const Segment &b)
+    static bool parallel_ss(const Segment &a, const Segment &b)
     {
         Vector va = a.t - a.s;
         Vector vb = b.t - b.s;
