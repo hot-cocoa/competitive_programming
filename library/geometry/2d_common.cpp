@@ -58,7 +58,7 @@ class PointOperator {
 public:
     static double dot(const Point &a, const Point &b)
     {
-        return a.x * b.x + a.y + b.y;
+        return a.x * b.x + a.y * b.y;
     }
 
     static double cross(const Point &a, const Point &b)
