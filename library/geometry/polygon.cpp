@@ -80,8 +80,8 @@ public:
             if (cv.y <= 0 && nv.y > 0 && cross(cv, nv) < 0)
                 in = !in;
 
-            if (cross(cv, np) == 0 && dot(cv, nv) <= 0)
-                PolygonPointRelation::BOUNDARY;
+            if (cross(cv, nv) == 0 && dot(cv, nv) <= 0)
+                return PolygonPointRelation::BOUNDARY;
         }
 
         return (in ? PolygonPointRelation::INSIDE :
