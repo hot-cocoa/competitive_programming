@@ -64,7 +64,7 @@ public:
         return true;
     }
 
-    static auto contain_pp(const Polygon &pg, const Point &p)
+    static PolygonPointRelation contain_pp(const Polygon &pg, const Point &p)
     {
         const auto &cross = PointOperator::cross;
         const auto &dot   = PointOperator::dot;
@@ -72,8 +72,8 @@ public:
         int N = pg.size();
         bool in = false;
         for (int i = 0; i < N; i++) {
-            auto cv = curr<Point>(p, idx) - p;
-            auto nv = next<Point>(p, idx) - p;
+            auto cv = curr<Point>(pg, i) - p;
+            auto nv = next<Point>(pg, i) - p;
             if (cv.y > nv.y)
                 std::swap(cv, nv);
 
