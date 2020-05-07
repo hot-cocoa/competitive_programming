@@ -20,6 +20,12 @@ T next(std::vector<T> x, int idx)
     return x[(idx + 1) % x.size()];
 }
 
+enum class PolygonPointRelation : int {
+    INSIDE   = 2,
+    BOUNDARY = 1,
+    OUTSIDE  = 0
+};
+
 /*
  * [Verified]
  * ・area
@@ -56,5 +62,29 @@ public:
                 return false;
 
         return true;
+    }
+
+    static auto contain_pp(const Polygon &pg, const Point &p)
+    {
+        const auto &cross = PointOperator::cross;
+        const auto &dot   = PointOperator::dot;
+
+        int N = pg.size();
+        bool in = false;
+        for (int i = 0; i < N; i++) {
+            auto cv = curr<Point>(p, idx) - p;
+            auto nv = next<Point>(p, idx) - p;
+            if (cv.y > nv.y)
+                std::swap(cv, nv);
+
+            if (cv.y <= 0 && nv.y > 0 && cross(cv, nv) < 0)
+                in = !in;
+
+            if (cross(cv, np) == 0 && dot(cv, nv) <= 0)
+                PolygonPointRelation::BOUNDARY;
+        }
+
+        return (in ? PolygonPointRelation::INSIDE :
+                     PolygonPointRelation::OUTSIDE);
     }
 };
