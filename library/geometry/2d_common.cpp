@@ -4,6 +4,7 @@
 #include <algorithm>
 
 constexpr static double EPS = 1e-10;
+
 template<class T>
 bool equals(T a, T b)
 {
@@ -127,11 +128,9 @@ public:
         };
     }
 
-    /*
-     * (cx, cy)を中心に回転する
-     */
     static Point rotate(const Point &p, double th, double cx, double cy)
     {
+        // rotate around (cx, cy)
         return rotate({p.x - cx, p.y - cy}, th);
     }
 
@@ -141,7 +140,7 @@ public:
     }
 };
 
-// -- CCW用
+// -- For Counter Clock Wise
 enum class CcwIdentification : int {
     COUNTER_CLOCKWISE = +1,
     CLOCKWISE         = -1,
@@ -155,10 +154,7 @@ constexpr int operator * (
 {
     return static_cast<int>(l) * static_cast<int>(r);
 }
-/*
- * [Verified]
- * http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
- */
+
 class CounterClockWise {
 public:
     static CcwIdentification ccw(
@@ -218,11 +214,8 @@ public:
  */
 class SegmentUtil {
 public:
-    /*
-     * 線分上の点を取得する。
-     * N分割した際の点を取得する。
-     */
-    static std::vector<Point> get_points_on_segment(const Segment &s, int N)
+    static std::vector<Point> get_points_on_segment(
+        const Segment &s, int N /* -> # of division */)
     {
         Point p1 = s.s, p2 = s.t;
         std::vector<Point> points_on_segment;
@@ -307,7 +300,7 @@ public:
     }
 };
 
-// -- 線分アレンジメント用
+// -- For Segment Arrangement
 struct Edge {
     int to;
     double cost;
@@ -373,9 +366,6 @@ using Line = Segment;
 
 class LineUtil : SegmentUtil {
 private:
-    /*
-     * 垂直二等分線を求める
-     */
     static Line get_perpendicular_bisector(const Point &a, const Point &b)
     {
         double cx = (a.x + b.x) / 2.0;
@@ -387,9 +377,6 @@ private:
     }
 
 public:
-    /*
-     * 法線ベクトルを求める
-     */
     static std::vector<Vector> normal_line_vector(const Line &l)
     {
         Vector v = l.t - l.s;
@@ -401,9 +388,6 @@ public:
         };
     }
 
-    /*
-     * 直線を距離dだけ平行移動させる
-     */
     static std::vector<Line> translation(const Line &l, double d)
     {
         std::vector<Vector> nlv = normal_line_vector(l);
@@ -413,9 +397,6 @@ public:
         };
     }
 
-    /*
-     * 垂直二等分線を求める
-     */
     static Line get_perpendicular_bisector(const Line &l)
     {
         return get_perpendicular_bisector(l.s, l.t);
@@ -486,7 +467,7 @@ class Triangle {
 public:
     double area(const Point &a, const Point &b, const Point &c)
     {
-        // ヘロンの公式
+        // solve by heron's formula
         const auto dist = PointOperator::dist;
         double p = dist(a, b), q = dist(a, c), r = dist(b, c);
         double s = (p + q + r) / 2;
