@@ -20,6 +20,14 @@ T next(std::vector<T> x, int idx)
     return x[(idx + 1) % x.size()];
 }
 
+bool sort_y(Point p1, Point p2)
+{
+    if (p1.y != p2.y)
+        return p1.y - p2.y < -EPS;
+    else
+        return p1.x - p2.x < -EPS;
+}
+
 enum class PolygonPointRelation : int {
     INSIDE   = 2,
     BOUNDARY = 1,
@@ -33,6 +41,12 @@ enum class PolygonPointRelation : int {
  *
  * ・is_convex
  * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
+ *
+ * ・contain_pp
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
+ *
+ * ・convex_hull
+ * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
  */
 class PolygonUtil {
 public:
@@ -86,5 +100,31 @@ public:
 
         return (in ? PolygonPointRelation::INSIDE :
                      PolygonPointRelation::OUTSIDE);
+    }
+
+    static Polygon convex_hull(const Polygon &base)
+    {
+        int N = base.size();
+        Polygon pg(N * 2);
+        Polygon ps = base;
+        std::sort(ps.begin(), ps.end(), sort_y);
+
+        int j = 0;
+        const auto &cross = PointOperator::cross;
+        for (int i = 0; i < N; i++) {
+            while (j > 1 && cross(pg[j - 1] - pg[j - 2], ps[i] - pg[j - 1]) < 0)
+                j--;
+
+            pg[j++] = ps[i];
+        }
+
+        for (int i = N - 2, k = j; i >= 0; i--) {
+            while (j > k && cross(pg[j - 1] - pg[j - 2], ps[i] - pg[j - 1]) < 0)
+                j--;
+
+            pg[j++] = ps[i];
+        }
+        pg.resize(j - 1);
+        return pg;
     }
 };
