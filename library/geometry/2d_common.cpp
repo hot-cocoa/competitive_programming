@@ -40,6 +40,11 @@ public:
     {
         return x != p.x ? x < p.x : y < p.y;
     }
+
+    bool operator == (const Point &p) const
+    {
+        return equals(x, p.x) && equals(y, p.y);
+    }
 };
 
 std::istream &operator >> (std::istream &is, Point &p)
