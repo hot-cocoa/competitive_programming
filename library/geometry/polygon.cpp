@@ -3,21 +3,29 @@
 using Polygon = std::vector<Point>;
 
 template<class T>
-T prev(std::vector<T> x, int idx)
+T prev(const std::vector<T> &x, int idx)
 {
     return x[(idx - 1 + x.size()) % x.size()];
 }
 
 template<class T>
-T curr(std::vector<T> x, int idx)
+T curr(const std::vector<T> &x, int idx)
 {
     return x[idx % x.size()];
 }
 
 template<class T>
-T next(std::vector<T> x, int idx)
+T next(const std::vector<T> &x, int idx)
 {
     return x[(idx + 1) % x.size()];
+}
+
+bool sort_x(Point p1, Point p2)
+{
+    if (p1.x != p2.x)
+        return p1.x - p2.x < -EPS;
+    else
+        return p1.y - p2.y < -EPS;
 }
 
 bool sort_y(Point p1, Point p2)
@@ -34,20 +42,6 @@ enum class PolygonPointRelation : int {
     OUTSIDE  = 0
 };
 
-/*
- * [Verified]
- * ・area
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
- *
- * ・is_convex
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
- *
- * ・contain_pp
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
- *
- * ・convex_hull
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A
- */
 class PolygonUtil {
 public:
     static double area(const Polygon &p)
@@ -126,5 +120,38 @@ public:
         }
         pg.resize(j - 1);
         return pg;
+    }
+
+    static double polygon_diameter(const Polygon &pg)
+    {
+        const auto &dist = PointOperator::dist;
+
+        Polygon np = convex_hull(pg);
+        int N = np.size();
+        if (N == 2)
+            return dist(np[0], np[1]);
+
+        int i = 0, j = 0;
+        for (int k = 0; k < N; k++) {
+            if (!sort_x(np[i], np[k]))
+                i = k;
+
+            if (sort_x(np[j], np[k]))
+                j = k;
+        }
+
+        double diameter = 0;
+        int si = i, sj = j;
+        while (i != sj || j != si) {
+            diameter = std::max(diameter, dist(np[i], np[j]));
+            auto pi = next<Point>(np, i) - curr<Point>(np, i);
+            auto pj = next<Point>(np, j) - curr<Point>(np, j);
+
+            if (PointOperator::cross(pi, pj) < 0)
+                i = (i + 1) % N;
+            else
+                j = (j + 1) % N;
+        }
+        return diameter;
     }
 };
