@@ -46,6 +46,11 @@ public:
     {
         return equals(x, p.x) && equals(y, p.y);
     }
+
+    bool operator != (const Point &p) const
+    {
+        return !(Point{x, y} == p);
+    }
 };
 
 Point operator * (const Point &a, const Point &b)
@@ -188,6 +193,14 @@ public:
     Point t;
 
     Segment(const Point &s, const Point &t) : s{s}, t{t} {}
+
+    bool operator < (const Segment &sg) const
+    {
+        if (s != sg.s)
+            return s < sg.s;
+
+        return t < sg.t;
+    }
 };
 
 /*

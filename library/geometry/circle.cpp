@@ -1,4 +1,5 @@
 #include "2d_common.cpp"
+#include <set>
 
 class Circle {
 public:
@@ -61,31 +62,31 @@ public:
         return {c.p + p1 - p2, c.p + p1 + p2};
     }
 
-    static std::vector<Line> tangent_cc(const Circle &a, const Circle &b)
+    static std::set<Line> tangent_cc(const Circle &a, const Circle &b)
     {
         if (PointOperator::abs(b.p - a.p) < EPS)
             return {};
 
-        std::vector<Line> common_lines;
+        std::set<Line> common_lines;
         if (abs(a.r - b.r) < EPS) {
             Point dir = b.p - a.p;
             dir = Rotation::rotate90(dir * a.r / PointOperator::abs(dir));
-            common_lines.emplace_back(a.p + dir, b.p + dir);
-            common_lines.emplace_back(a.p - dir, b.p - dir);
+            common_lines.emplace(a.p + dir, b.p + dir);
+            common_lines.emplace(a.p - dir, b.p - dir);
         }
         else {
             Point p = (a.p * -b.r + b.p * a.r) / (a.r - b.r);
             auto ps = tangent_cp(a, p);
             auto qs = tangent_cp(b, p);
             for (int i = 0; i < (int)std::min(ps.size(), qs.size()); i++)
-                common_lines.emplace_back(ps[i], qs[i]);
+                common_lines.emplace(ps[i], qs[i]);
         }
 
         Point p = (a.p * b.r + b.p * a.r) / (a.r + b.r);
         auto ps = tangent_cp(a, p);
         auto qs = tangent_cp(b, p);
         for (int i = 0; i < (int)std::min(ps.size(), qs.size()); i++)
-            common_lines.emplace_back(ps[i], qs[i]);
+            common_lines.emplace(ps[i], qs[i]);
 
         return common_lines;
     }
