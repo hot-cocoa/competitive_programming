@@ -1,6 +1,7 @@
 #include "2d_common.cpp"
 
 using Polygon = std::vector<Point>;
+using PolygonItr = std::vector<Point>::iterator;
 
 template<class T>
 T prev(const std::vector<T> &x, int idx)
@@ -43,6 +44,44 @@ enum class PolygonPointRelation : int {
 };
 
 class PolygonUtil {
+private:
+    constexpr static double INF = 1e60;
+
+    static double closest_pair(PolygonItr pg, int N)
+    {
+        if (N <= 1)
+            return INF;
+
+        int M = N / 2;
+        double x = pg[M].x;
+        double min_dist =
+            std::min(
+                closest_pair(pg, M),
+                closest_pair(pg + M, N - M)
+            );
+
+        auto compare_y = [](const Point &a, const Point &b) -> bool
+        {
+            return a.y < b.y;
+        };
+        std::inplace_merge(pg, pg + M, pg + N, compare_y);
+
+        for (int i = 0; i < N; i++) {
+            if (fabs(pg[i].x - x) >= min_dist)
+                continue;
+
+            for (int j = 0; j < i; j++) {
+                double dx = pg[i].x - pg[i - j - 1].x;
+                double dy = pg[i].y - pg[i - j - 1].y;
+                if (dy >= min_dist)
+                    break;
+
+                min_dist = std::min(min_dist, sqrt(dx * dx + dy * dy));
+            }
+        }
+        return min_dist;
+    }
+
 public:
     static double area(const Polygon &p)
     {
@@ -172,5 +211,12 @@ public:
         }
 
         return cutted_polygon;
+    }
+
+    static double closest_pair(const Polygon &pg)
+    {
+        Polygon p = pg;
+        std::sort(p.begin(), p.end());
+        return closest_pair(p.begin(), p.size());
     }
 };
