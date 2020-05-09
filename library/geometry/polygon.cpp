@@ -154,4 +154,23 @@ public:
         }
         return diameter;
     }
+
+    static Polygon convex_cut(const Polygon &pg, const Line &l)
+    {
+        const auto &ccw = CounterClockWise::ccw;
+
+        Polygon cutted_polygon;
+        for (int i = 0; i < (int)pg.size(); i++) {
+            Point cp = curr<Point>(pg, i);
+            Point np = next<Point>(pg, i);
+            if (ccw(l.s, l.t, cp) != CcwIdentification::CLOCKWISE)
+                cutted_polygon.emplace_back(cp);
+
+            if (ccw(l.s, l.t, cp) * ccw(l.s, l.t, np) < 0)
+                cutted_polygon.emplace_back(
+                    LineUtil::crosspoint_ll({cp, np}, l));
+        }
+
+        return cutted_polygon;
+    }
 };

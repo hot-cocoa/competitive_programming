@@ -141,19 +141,13 @@ public:
 };
 
 // -- For Counter Clock Wise
-enum class CcwIdentification : int {
+enum CcwIdentification : int {
     COUNTER_CLOCKWISE = +1,
     CLOCKWISE         = -1,
     ONLINE_BACK       = +2,
     ONLINE_FRONT      = -2,
     ON_SEGMENT        = +0
 };
-
-constexpr int operator * (
-    CcwIdentification l, CcwIdentification r)
-{
-    return static_cast<int>(l) * static_cast<int>(r);
-}
 
 class CounterClockWise {
 public:
