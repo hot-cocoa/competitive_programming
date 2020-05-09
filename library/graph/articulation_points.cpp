@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using vec = std::vector<int>;
 using Graph = std::vector<vec>;
