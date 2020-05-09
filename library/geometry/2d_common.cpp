@@ -48,6 +48,11 @@ public:
     }
 };
 
+Point operator * (const Point &a, const Point &b)
+{
+    return {a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x};
+}
+
 std::istream &operator >> (std::istream &is, Point &p)
 {
     return is >> p.x >> p.y;
@@ -358,7 +363,7 @@ public:
 
 using Line = Segment;
 
-class LineUtil : SegmentUtil {
+class LineUtil : public SegmentUtil {
 private:
     static Line get_perpendicular_bisector(const Point &a, const Point &b)
     {
