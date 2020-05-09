@@ -91,7 +91,6 @@ public:
         return common_lines;
     }
 
-    // verified
     static Circle smallest_enclosing_circle(const std::vector<Point> &ps)
     {
         const auto &abs = PointOperator::abs;
