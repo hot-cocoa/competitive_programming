@@ -21,8 +21,19 @@ private:
         std::swap(x[c], x[d]);
     }
 
+    T at(int idx) const { return x[idx]; }
+
+    bool same_faces(const Dice &d) const
+    {
+        for (int i = 0; i < size(); i++)
+            if (at(i) != d.at(i))
+                return false;
+
+        return true;
+    }
+
 public:
-    Dice(std::vector<T> x) : x{x} {}
+    Dice(const std::vector<T> &x) : x{x} {}
 
     void roll_N() { roll(TOP, FRONT, BACK, BOTTOM); }
     void roll_E() { roll(TOP, LEFT, RIGHT, BOTTOM); }
@@ -32,10 +43,45 @@ public:
     void rotation_left()  { roll(FRONT, RIGHT, LEFT, BACK); }
     void rotation_right() { roll(FRONT, LEFT, RIGHT, BACK); }
 
-    T top()    { return x[TOP]; }
-    T front()  { return x[FRONT]; }
-    T right()  { return x[RIGHT]; }
-    T left()   { return x[LEFT]; }
-    T back()   { return x[BACK]; }
-    T bottom() { return x[BOTTOM]; }
+    // Constraints: the values of face are all different
+    void roll(T top_val, T front_val)
+    {
+        if (left() == top_val)
+            roll_E();
+
+        if (right() == top_val)
+            roll_W();
+
+        while (top() != top_val)
+            roll_N();
+
+        while (front() != front_val)
+            rotation_left();
+    }
+
+    T top()    const { return x[TOP]; }
+    T front()  const { return x[FRONT]; }
+    T right()  const { return x[RIGHT]; }
+    T left()   const { return x[LEFT]; }
+    T back()   const { return x[BACK]; }
+    T bottom() const { return x[BOTTOM]; }
+
+    int size() const { return x.size(); }
+
+    bool operator == (const Dice &d)
+    {
+        if (size() != d.size())
+            return false;
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (same_faces(d))
+                    return true;
+
+                rotation_left();
+            }
+            i % 2 == 0 ? roll_N() : roll_E();
+        }
+        return false;
+    }
 };
