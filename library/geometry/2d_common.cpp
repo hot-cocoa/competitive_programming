@@ -102,22 +102,28 @@ class Angle {
 private:
     constexpr static double PI = acos(-1);
 public:
+    // unverified
     static double to_rad(double angle)
     {
         return angle * PI / 180.0;
     }
-
+    // unverified
     static double to_angle(double rad)
     {
         return rad * 180.0 / PI;
     }
-
+    // unverified
     static double angle_between_vectors(
         const Point &a, const Point &b, const Point &c)
     {
         Vector v1 = b - a;
         Vector v2 = c - a;
-
+        return angle_between_vectors(v1, v2);
+    }
+    // unverified
+    static double angle_between_vectors(
+        const Vector &v1, const Vector &v2)
+    {
         double aat = atan2(v1.y, v1.x);
         double bat = atan2(v2.y, v2.x);
         if (aat > bat)
@@ -130,6 +136,7 @@ public:
 
 class Rotation {
 public:
+    // unverified
     static Point rotate(const Point &p, double th /* => rad */)
     {
         return {
@@ -137,7 +144,7 @@ public:
             sin(th) * p.x + cos(th) * p.y
         };
     }
-
+    // unverified
     static Point rotate(const Point &p, double th, double cx, double cy)
     {
         // rotate around (cx, cy)
@@ -203,29 +210,9 @@ public:
     }
 };
 
-/*
- * [Verified]
- * ・projection
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
- *
- * ・reflection
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
- *
- * ・intersect_ss
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
- *
- * ・crosspoint_ss
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
- *
- * ・distance_ss
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
- *
- * ・orthogonal_ss
- * ・parallel_ss
- * 　http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
- */
 class SegmentUtil {
 public:
+    // unverified
     static std::vector<Point> get_points_on_segment(
         const Segment &s, int N /* -> # of division */)
     {
@@ -326,6 +313,7 @@ struct Edge {
 using Edges = std::vector<Edge>;
 using Graph = std::vector<Edges>;
 // --
+// unverified
 class SegmentArrangement {
 public:
     Graph make_graph(
@@ -389,6 +377,7 @@ private:
     }
 
 public:
+    // unverified
     static std::vector<Vector> normal_line_vector(const Line &l)
     {
         Vector v = l.t - l.s;
@@ -400,6 +389,7 @@ public:
         };
     }
 
+    // unverified
     static std::vector<Line> translation(const Line &l, double d)
     {
         std::vector<Vector> nlv = normal_line_vector(l);
@@ -409,11 +399,13 @@ public:
         };
     }
 
+    // unverified
     static Line get_perpendicular_bisector(const Line &l)
     {
         return get_perpendicular_bisector(l.s, l.t);
     }
 
+    // unverified
     static bool intersect_ll(const Line &a, const Line &b)
     {
         const auto &cross = PointOperator::cross;
@@ -424,6 +416,7 @@ public:
         return diff_slope || same_lines;
     }
 
+    // unverified
     static bool intersect_lp(const Line &l, const Point &p)
     {
         const auto &res = CounterClockWise::ccw(l.s, l.t, p);
@@ -435,12 +428,14 @@ public:
         return !is_counter_clock_wise && !is_clock_wise;
     }
 
+    // unverified
     static bool intersect_ls(const Line &l, const Segment &s)
     {
         const auto &cross = PointOperator::cross;
         return cross(l.t - l.s, s.s - l.s) * cross(l.t - l.s, s.t - l.s) < EPS;
     }
 
+    // unverified
     static Point crosspoint_ll(const Line &a, const Line &b)
     {
         Vector va = a.t - a.s, vb = b.t - b.s;
@@ -453,11 +448,13 @@ public:
         return a.s + va * cross(vb, b.t - a.s) * (1.0 / d);
     }
 
+    // unverified
     static double distance_lp(const Line &l, const Point &p)
     {
         return PointOperator::abs(p - projection(l, p));
     }
 
+    // unverified
     static double distance_ll(const Line &a, const Line &b)
     {
         if (intersect_ll(a, b))
@@ -466,6 +463,7 @@ public:
         return distance_lp(a, b.s);
     }
 
+    // unverified
     double distance_ls(const Line &l, const Segment &s)
     {
         if (intersect_ls(l, s))
@@ -477,6 +475,7 @@ public:
 
 class Triangle {
 public:
+    // unverified
     double area(const Point &a, const Point &b, const Point &c)
     {
         // solve by heron's formula
