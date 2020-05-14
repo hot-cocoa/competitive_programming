@@ -37,10 +37,10 @@ bool sort_y(Point p1, Point p2)
         return p1.x - p2.x < -EPS;
 }
 
-enum class PolygonPointRelation : int {
-    INSIDE   = 2,
-    BOUNDARY = 1,
-    OUTSIDE  = 0
+enum class PolygonPointRelation {
+    INSIDE,
+    BOUNDARY,
+    OUTSIDE
 };
 
 class PolygonUtil {
