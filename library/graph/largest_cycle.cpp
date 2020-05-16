@@ -14,13 +14,12 @@ private:
         num[v] = c;
 
         int largest = 0;
-        for (int to : g[v]) {
+        for (int to : g[v])
             if (visited[to] == -1)
                 largest = std::max(largest, dfs(to, c + 1));
             else if (visited[to] == 0)
                 largest = std::max(largest, num[v] - num[to] + 1);
-        }
-
+                
         visited[v] = 1;
         return largest;
     }
