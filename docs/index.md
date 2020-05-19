@@ -1,4 +1,4 @@
-Library for competitive programming
+# Library for competitive programming
 
 ## Data structure
 ## Date
