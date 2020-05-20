@@ -6,7 +6,7 @@
 O(E log V)
 
 ## コード
-https://github.com/hot-cocoa/competitive_programming/blob/master/library/graph/dijkstra.cpp
+[GitHub](https://github.com/hot-cocoa/competitive_programming/blob/master/library/graph/dijkstra.cpp)
 
 ## 検証
-- AOJ(https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A)
+- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A)
