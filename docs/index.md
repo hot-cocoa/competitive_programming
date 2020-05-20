@@ -1,11 +1,11 @@
-# Library for competitive programming
+# 競技プログラミング用ライブラリ
 
-## Data structure
-## Date
-## Dice
-## Geometry
-## Graph
+### Data structure
+### Date
+### Dice
+### Geometry
+### Graph
 - [dijkstra](./library/graph/dijkstra.md)
 
-## Math
-## String
+### Math
+### String
