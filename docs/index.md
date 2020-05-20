@@ -6,5 +6,6 @@
 ## Geometry
 ## Graph
 - [dijkstra](./library/graph/dijkstra.md)
+
 ## Math
 ## String
