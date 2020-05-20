@@ -5,7 +5,7 @@
 ## Dice
 ## Geometry
 ## Graph
-- [dijkstra](./library/graph/dijkstra.md)
+- [ダイクストラ法](./library/graph/dijkstra.md)
 
 ## Math
 ## String
