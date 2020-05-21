@@ -7,7 +7,7 @@
 ## Graph
 - [ダイクストラ法](./library/graph/dijkstra.md)
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
-- [ワーシャルフロイド法](./library/graph/Warshall_floyd.md)
+- [ワーシャルフロイド法](./library/graph/warshall_floyd.md)
 
 ## Math
 ## String
