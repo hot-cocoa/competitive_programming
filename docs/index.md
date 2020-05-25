@@ -12,6 +12,11 @@
 - [サイコロ](./library/dice/dice.md)
 
 ## Geometry
+- 2次元幾何
+    - [基本要素](./library/geometry/2d_common.md)
+    - [円](./library/geometry/circle.md)
+    - [多角形](./library/geometry/polygon.md)
+
 ## Graph
 - [ダイクストラ法](./library/graph/dijkstra.md)
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
