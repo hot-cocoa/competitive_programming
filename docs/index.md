@@ -6,6 +6,8 @@
 - [Union Find](./library/data_structure/union_find.md)
 
 ## Date
+- [うるう年判定](./library/date/is_leap.md)
+
 ## Dice
 - [サイコロ](./library/dice/dice.md)
 
