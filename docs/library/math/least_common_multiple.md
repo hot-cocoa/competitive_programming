@@ -6,7 +6,7 @@
 O(log n)
 
 ## コード
-```
+```cpp
 using int64 = long long;
 
 int64 gcd(int64 a, int64 b)
