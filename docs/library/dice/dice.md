@@ -100,7 +100,7 @@ public:
 ```
 
 ## 検証
-- AOJLibrary
+- AOJ Library
     - [上下左右回転](https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/11/ITP1_11_A)
     - [上面と前面が合うように回転](https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/11/ITP1_11_B)
     - [同値判定](https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/11/ITP1_11_C)

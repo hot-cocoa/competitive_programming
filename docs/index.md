@@ -1,8 +1,12 @@
 # 競技プログラミング用ライブラリ
 
 ## Data structure
+- [Binary Indexed Tree](./library/data_structure/binary_indexed_tree.md)
+
 ## Date
 ## Dice
+- [サイコロ](./library/dice/dice.md)
+
 ## Geometry
 ## Graph
 - [ダイクストラ法](./library/graph/dijkstra.md)
