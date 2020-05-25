@@ -5,17 +5,14 @@ using ull = unsigned long long;
 constexpr ull B = 1000000007UL;
 
 class RollingHash {
-public:
-    /*
-     * 文字列sの部分文字列s[L, R]のハッシュ値は以下の通り.
-     * h[L, R] := h[R + 1] - h[L] * p[R - L + 1]
-     */
-    std::vector<ull> create(
-        const std::string &s,
-        int size,
-        std::vector<ull> &p
-    ) {
-        std::vector<ull> h(size + 1);
+private:
+    std::vector<ull> h;
+    std::vector<ull> p;
+
+    void build(const std::string &s)
+    {
+        int size = s.size();
+        h.resize(size + 1);
         p.resize(size + 1);
         p[0] = 1;
 
@@ -23,7 +20,17 @@ public:
             h[i + 1] = h[i] * B + s[i];
             p[i + 1] = p[i] * B;
         }
+    }
 
-        return h;
+public:
+    RollingHash(const std::string &s)
+    {
+        build(s);
+    }
+
+    // calculate hash(closed section[l, r])
+    ull hash(int l, int r)
+    {
+        return h[r + 1] - h[l] * p[r - l + 1];
     }
 };
