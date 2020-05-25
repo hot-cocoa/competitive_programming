@@ -23,4 +23,8 @@
 - [ワーシャルフロイド法](./library/graph/warshall_floyd.md)
 
 ## Math
+- [組み合わせ](./library/math/combination.md)
+- [約数列挙](./library/math/divisor.md)
+- [エラトステネスの篩](./library/math/eratosthenes_sieve.md)
+
 ## String
