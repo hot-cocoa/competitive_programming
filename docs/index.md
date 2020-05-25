@@ -26,5 +26,8 @@
 - [組み合わせ](./library/math/combination.md)
 - [約数列挙](./library/math/divisor.md)
 - [エラトステネスの篩](./library/math/eratosthenes_sieve.md)
+- [オイラーのφ関数](./library/math/euler_phi.md)
+- [拡張ユークリッドの互除法](./library/math/extended_euclid.md)
+- [最小公倍数](./library/math/least_common_multiple.md)
 
 ## String
