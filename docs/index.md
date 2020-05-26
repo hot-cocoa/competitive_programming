@@ -23,6 +23,8 @@
 - [橋](./library/graph/bridges.md)
 - [ダイクストラ法](./library/graph/dijkstra.md)
 - [最小全域木(プリム法)](./library/graph/minimum_spanning_tree.md)
+- [木の直径](./library/graph/tree_diameter.md)
+- [木の高さ](./library/graph/tree_height.md)
 - [ワーシャルフロイド法](./library/graph/warshall_floyd.md)
 
 ## Math
