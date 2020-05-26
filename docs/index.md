@@ -18,8 +18,11 @@
     - [多角形](./library/geometry/polygon.md)
 
 ## Graph
-- [ダイクストラ法](./library/graph/dijkstra.md)
+- [関節点](./library/graph/articulation_points.md)
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
+- [橋](./library/graph/bridges.md)
+- [ダイクストラ法](./library/graph/dijkstra.md)
+- [最小全域木(プリム法)](./library/graph/minimum_spanning_tree.md)
 - [ワーシャルフロイド法](./library/graph/warshall_floyd.md)
 
 ## Math
