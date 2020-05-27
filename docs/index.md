@@ -40,3 +40,4 @@
 
 ## String
 - [ローリングハッシュ](./library/string/rolling_hash.md)
+- [接尾辞配列](./library/string/suffix_array.md)
