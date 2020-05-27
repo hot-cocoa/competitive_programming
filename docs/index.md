@@ -22,6 +22,8 @@
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
 - [橋](./library/graph/bridges.md)
 - [ダイクストラ法](./library/graph/dijkstra.md)
+- [最大流(Dinic)](./library/graph/max_flow_dinic.md)
+- [最大流(Ford Fulkerson)](./library/graph/max_flow_ford_fulkerson.md)
 - [最小全域木(プリム法)](./library/graph/minimum_spanning_tree.md)
 - [木の直径](./library/graph/tree_diameter.md)
 - [木の高さ](./library/graph/tree_height.md)
