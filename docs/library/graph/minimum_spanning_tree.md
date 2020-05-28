@@ -51,4 +51,4 @@ public:
 ```
 
 ## 検証
-- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A)
+- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A)

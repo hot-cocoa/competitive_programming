@@ -79,4 +79,4 @@ public:
 ```
 
 ## 検証
-- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B)
+- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B)
