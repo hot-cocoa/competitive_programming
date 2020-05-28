@@ -20,7 +20,7 @@
 ## Graph
 - [関節点](./library/graph/articulation_points.md)
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
-- [2部マッチング](./library/graph/bipartite_matching.md)
+- [二部マッチング](./library/graph/bipartite_matching.md)
 - [橋](./library/graph/bridges.md)
 - [彩色数](./library/graph/chromatic_number.md)
 - [サイクル検出](./library/graph/cycle_detection.md)
