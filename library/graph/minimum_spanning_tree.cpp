@@ -14,7 +14,8 @@ private:
     using pii = std::pair<int, int>;
 
 public:
-    int prim(const Graph &g)
+    // prim
+    int solve(const Graph &g)
     {
         std::priority_queue<pii, std::vector<pii>, std::greater<pii>> pq;
         pq.emplace(0, 0);
