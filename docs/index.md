@@ -31,6 +31,7 @@
 - [最大流(Dinic)](./library/graph/max_flow_dinic.md)
 - [最大流(Ford Fulkerson)](./library/graph/max_flow_ford_fulkerson.md)
 - [最小費用流](./library/graph/minimum_cost_flow.md)
+- [最小全域木(クラスカル法)](./library/graph/minimum_spanning_tree_kruskal.md)
 - [最小全域木(プリム法)](./library/graph/minimum_spanning_tree_prim.md)
 - [強連結性成分分解](./library/graph/strongly_connected_components.md)
 - [トポロジカルソート](./library/graph/topological_sort.md)
