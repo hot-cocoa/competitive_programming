@@ -33,6 +33,7 @@
 - [最小費用流](./library/graph/minimum_cost_flow.md)
 - [最小全域木(クラスカル法)](./library/graph/minimum_spanning_tree_kruskal.md)
 - [最小全域木(プリム法)](./library/graph/minimum_spanning_tree_prim.md)
+- [スターンブロコット木](./library/graph/stern_brocot.md)
 - [強連結性成分分解](./library/graph/strongly_connected_components.md)
 - [トポロジカルソート](./library/graph/topological_sort.md)
 - [木の直径](./library/graph/tree_diameter.md)
