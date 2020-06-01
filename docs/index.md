@@ -3,6 +3,7 @@
 ## Data structure
 - [Binary Indexed Tree](./library/data_structure/binary_indexed_tree.md)
 - [Range Minimum Query](./library/data_structure/rmq.md)
+- [セグメント木](./library/data_structure/segment_tree.md)
 - [Union Find](./library/data_structure/union_find.md)
 
 ## Date
