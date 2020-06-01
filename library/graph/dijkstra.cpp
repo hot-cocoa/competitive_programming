@@ -1,25 +1,30 @@
 #include <vector>
 #include <queue>
+#include <limits>
 
+template<class T>
 class edge {
 public:
-    int to, weight;
+    int to;
+    T weight;
 
-    edge(int to, int weight) : to{to}, weight{weight} {}
+    edge(int to, T weight) : to{to}, weight{weight} {}
 };
 
-using Graph = std::vector<std::vector<edge>>;
-constexpr static int INF = 1e9;
+template<class T>
+using Graph = std::vector<std::vector<edge<T>>>;
 
+template<class T>
 class Dijkstra {
 private:
-    Graph g;
+    Graph<T> g;
+    constexpr static T INF = std::numeric_limits<T>::max() / 2;
 
     struct State {
         int v;
-        int weight;
+        T weight;
 
-        State(int v, int weight) : v{v}, weight{weight} {}
+        State(int v, T weight) : v{v}, weight{weight} {}
 
         bool operator < (const State &s) const
         {
@@ -28,17 +33,17 @@ private:
     };
 
 public:
-    Dijkstra(Graph g) : g{g} {}
+    Dijkstra(Graph<T> g) : g{g} {}
 
-    std::vector<int> shortest_path(int s)
+    std::vector<T> shortest_path(int s)
     {
         std::priority_queue<State> pq;
         pq.emplace(s, 0);
 
-        std::vector<int> weight(g.size(), INF);
+        std::vector<T> weight(g.size(), INF);
         weight[s] = 0;
 
-        const auto &update = [&](const edge &e, const State &s) -> bool
+        const auto &update = [&](const edge<T> &e, const State &s) -> bool
         {
             if (weight[s.v] + e.weight >= weight[e.to])
                 return false;
@@ -52,7 +57,7 @@ public:
             if (weight[curr.v] < curr.weight)
                 continue;
 
-            for (const edge &e : g[curr.v])
+            for (const edge<T> &e : g[curr.v])
                 if (update(e, curr))
                     pq.emplace(e.to, weight[e.to]);
         }
