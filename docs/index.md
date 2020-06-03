@@ -2,6 +2,7 @@
 
 ## Data structure
 - [Binary Indexed Tree](./library/data_structure/binary_indexed_tree.md)
+- [2次元KD木](./library/data_structure/kd_tree.md)
 - [セグメント木](./library/data_structure/segment_tree.md)
 - [Union Find](./library/data_structure/union_find.md)
 
