@@ -68,5 +68,18 @@ public:
 };
 ```
 
+## Range Minimum Query
+```cpp
+// 構築
+auto min = [](int a, int b) { return std::min(a, b); };
+SegmentTree<int> seg(n, min, std::numeric_limits<int>::max());
+
+// 更新
+seg.update(x, y);
+
+// 最小値
+seg.query(l, r);
+```
+
 ## 検証
 - [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A)
