@@ -18,8 +18,9 @@ template<class T>
 class SegmentTree {
 private:
     using F = std::function<T(T, T)>;
-    const F f; // Binary operation
-    const T e; // Identity element
+    const F f;
+    const F g;
+    const T e;
 
     int N;
     std::vector<T> dat;
@@ -32,8 +33,12 @@ private:
 
         dat.assign(2 * N - 1, e);
     }
+
 public:
-    SegmentTree(int N, const F &f, const T &e) : f{f}, e{e}
+    SegmentTree(
+        int N, const T &e,
+        const F &f, const F &g = [](int l, int r){ return r; }) :
+        f{f}, g{g}, e{e}
     {
         build(N);
     }
@@ -41,7 +46,7 @@ public:
     void update(int k, T x)
     {
         k += N - 1;
-        dat[k] = x;
+        dat[k] = g(dat[k], x);
         while (k > 0) {
             k = (k - 1) / 2;
             dat[k] = f(dat[k * 2 + 1], dat[k * 2 + 2]);
@@ -70,16 +75,17 @@ public:
 
 ## Range Minimum Query
 ```cpp
-// 構築
-auto min = [](int a, int b) { return std::min(a, b); };
-SegmentTree<int> seg(n, min, std::numeric_limits<int>::max());
+const auto f = [](int a, int b){ return std::min(a, b); };
+const auto g = [](int a, int b){ return b; };
+SegmentTree<int> seg(n, std::numeric_limits<int>::max(), f, g);
+```
 
-// 更新
-seg.update(x, y);
-
-// 最小値
-seg.query(l, r);
+## Range Sum Query
+```cpp
+const auto f = [](int a, int b){ return a + b; };
+SegmentTree<int> seg(n, 0, f, f);
 ```
 
 ## 検証
-- [AOJ Library](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A)
+- [AOJ Library(RMQ)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A)
+- [AOJ Library(RSQ)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B)

@@ -5,8 +5,9 @@ template<class T>
 class SegmentTree {
 private:
     using F = std::function<T(T, T)>;
-    const F f; // Binary operation
-    const T e; // Identity element
+    const F f;
+    const F g;
+    const T e;
 
     int N;
     std::vector<T> dat;
@@ -19,8 +20,12 @@ private:
 
         dat.assign(2 * N - 1, e);
     }
+
 public:
-    SegmentTree(int N, const F &f, const T &e) : f{f}, e{e}
+    SegmentTree(
+        int N, const T &e,
+        const F &f, const F &g = [](int l, int r){ return r; }) :
+        f{f}, g{g}, e{e}
     {
         build(N);
     }
@@ -28,7 +33,7 @@ public:
     void update(int k, T x)
     {
         k += N - 1;
-        dat[k] = x;
+        dat[k] = g(dat[k], x);
         while (k > 0) {
             k = (k - 1) / 2;
             dat[k] = f(dat[k * 2 + 1], dat[k * 2 + 2]);
