@@ -23,6 +23,7 @@
 - [関節点](./library/graph/articulation_points.md)
 - [ベルマンフォード法](./library/graph/bellman_ford.md)
 - [二部マッチング](./library/graph/bipartite_matching.md)
+- [幅優先探索](./library/graph/breadth_first_search.md)
 - [橋](./library/graph/bridges.md)
 - [彩色数](./library/graph/chromatic_number.md)
 - [サイクル検出](./library/graph/cycle_detection.md)
