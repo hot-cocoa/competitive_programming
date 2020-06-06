@@ -10,43 +10,47 @@ O(n)
 #include <queue>
 #include <limits>
 
+template<class T>
 class Edge {
 public:
-    int to, weight;
-    Edge(int to, int weight) : to{to}, weight{weight} {}
+    int to;
+    T weight;
+    Edge(int to, T weight) : to{to}, weight{weight} {}
 };
 
-using Edges = std::vector<Edge>;
-using Graph = std::vector<Edges>;
+template<class T>
+using Graph = std::vector<std::vector<Edge<T>>>;
 
+template<class T>
 class BreadthFirstSearch {
 private:
-    constexpr static int INF = std::numeric_limits<int>::max() / 2;
-    const Graph g;
+    constexpr static int INF = std::numeric_limits<T>::max() / 2;
+    constexpr static T WEIGHT = 1;
+    const Graph<T> g;
 
 public:
-    BreadthFirstSearch(const Graph &g) : g{g} {}
+    BreadthFirstSearch(const Graph<T> &g) : g{g} {}
 
     std::vector<int> solve(int s)
     {
-        std::vector<int> min_weight(g.size(), INF);
+        std::vector<T> min_weight(g.size(), INF);
         min_weight[s] = 0;
 
         std::queue<int> q;
         q.push(s);
 
         const auto update = [&](int from, int to) -> bool {
-            if (min_weight[from] + 1 >= min_weight[to])
+            if (min_weight[from] + WEIGHT >= min_weight[to])
                 return false;
 
-            min_weight[to] = min_weight[from] + 1;
+            min_weight[to] = min_weight[from] + WEIGHT;
             return true;
         };
 
         while (!q.empty()) {
             int curr = q.front(); q.pop();
 
-            for (const Edge &e : g[curr])
+            for (const auto &e : g[curr])
                 if (update(curr, e.to))
                     q.push(e.to);
         }
