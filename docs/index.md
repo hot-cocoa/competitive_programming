@@ -55,5 +55,6 @@
 - [素因数分解](./library/math/prime_factorize.md)
 
 ## String
+- [最長回文(Manacher)](./library/string/longest_palindrome.md)
 - [ローリングハッシュ](./library/string/rolling_hash.md)
 - [接尾辞配列](./library/string/suffix_array.md)
