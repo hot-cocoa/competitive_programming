@@ -49,6 +49,7 @@
 - [エラトステネスの篩](./library/math/eratosthenes_sieve.md)
 - [オイラーのφ関数](./library/math/euler_phi.md)
 - [拡張ユークリッドの互除法](./library/math/extended_euclid.md)
+- [素数判定](./library/math/is_prime.md)
 - [最小公倍数](./library/math/least_common_multiple.md)
 - [行列累乗](./library/math/matrix.md)
 - [ミラーラビン素数判定](./library/math/miller_rabin.md)
