@@ -15,6 +15,7 @@
 
 ## DP
 - [無向中国人郵便配達問題](./library/dp/chinese_postman.md)
+- [レーベンシュタイン距離(編集距離)](./library/dp/levenshtein_distance.md)
 
 ## Geometry
 - 2次元幾何
