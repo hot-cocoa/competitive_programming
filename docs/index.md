@@ -13,6 +13,9 @@
 ## Dice
 - [サイコロ](./library/dice/dice.md)
 
+## DP
+- [無向中国人郵便配達問題](./library/dp/chinese_postman.md)
+
 ## Geometry
 - 2次元幾何
     - [基本要素](./library/geometry/2d_common.md)
