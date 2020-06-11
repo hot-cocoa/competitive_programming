@@ -10,6 +10,7 @@
 ## Date
 - [日付差分](./library/date/fair_field.md)
 - [うるう年判定](./library/date/is_leap.md)
+- [ツェラーの公式(曜日計算)](./library/date/zeller.md)
 
 ## Dice
 - [サイコロ](./library/dice/dice.md)
