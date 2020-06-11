@@ -8,7 +8,7 @@
 - [Union Find](./library/data_structure/union_find.md)
 
 ## Date
-- [日付差分](./library/date/fair_field.md)
+- [フェアフィールドの公式(日付差分)](./library/date/fair_field.md)
 - [うるう年判定](./library/date/is_leap.md)
 - [ツェラーの公式(曜日計算)](./library/date/zeller.md)
 
