@@ -15,6 +15,7 @@
 
 ## DP
 - [無向中国人郵便配達問題](./library/dp/chinese_postman.md)
+- [最大正方形](./library/dp/largest_square.md)
 - [レーベンシュタイン距離(編集距離)](./library/dp/levenshtein_distance.md)
 - [巡回セールスマン問題](./library/dp/traveling_salesman.md)
 
