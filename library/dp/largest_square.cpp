@@ -1,5 +1,4 @@
 #include <vector>
-#include <string>
 
 using Vec = std::vector<int>;
 using Mat = std::vector<Vec>;
