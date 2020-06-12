@@ -21,6 +21,7 @@
 - [最大長方形inヒストグラム](./library/dp/largest_rectangle_in_histogram.md)
 - [最大正方形](./library/dp/largest_square.md)
 - [レーベンシュタイン距離(編集距離)](./library/dp/levenshtein_distance.md)
+- [最長共通部分列](./library/dp/longest_common_subsequence.md)
 - [巡回セールスマン問題](./library/dp/traveling_salesman.md)
 
 ## Geometry
