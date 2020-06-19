@@ -1,18 +1,21 @@
 #include <vector>
 #include <queue>
+#include <limits>
 
+template<class T>
 struct edge {
-    int to, cap, cost, rev;
-    edge(int to, int cap, int cost, int rev) :
+    int to, cap, rev;
+    T cost;
+    edge(int to, int cap, T cost, int rev) :
         to{to}, cap{cap}, cost{cost}, rev{rev} {}
 };
 
+template<class T>
 class MinimumCostFlow {
 private:
-    using vec = std::vector<edge>;
-    using Graph = std::vector<vec>;
-    using pii = std::pair<int, int>;
-    const int INF = (1 << 29);
+    using Graph = std::vector<std::vector<edge<T>>>;
+    using State = std::pair<T, int>;
+    const T INF = std::numeric_limits<T>::max() / 2;
     Graph g;
 
 public:
@@ -21,49 +24,49 @@ public:
         g.resize(V);
     }
 
-    void add_edge(int from, int to, int cap, int cost)
+    void add_edge(int from, int to, int cap, T cost)
     {
         g[from].emplace_back(to, cap, cost, g[to].size());
         g[to].emplace_back(from, 0, -cost, g[from].size() - 1);
     }
 
-    int primal_dual(int s, int t, int f)
+    T primal_dual(int s, int t, int f)
     {
-        int res = 0;
+        T res = 0;
         while (f > 0) {
-            // (dist, node)
-            std::priority_queue<pii, std::vector<pii>, std::greater<pii>> que;
-            que.emplace(0, s);
+            // (weight, node)
+            std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
+            pq.emplace(0, s);
 
-            std::vector<int> h(g.size());
+            std::vector<T> h(g.size());
             std::vector<int> prevv(g.size()), preve(g.size());
-            std::vector<int> dist(g.size(), INF);
-            dist[s] = 0;
+            std::vector<T> weight(g.size(), INF);
+            weight[s] = 0;
 
-            while (!que.empty()) {
-                pii p = que.top(); que.pop();
+            while (!pq.empty()) {
+                State p = pq.top(); pq.pop();
                 int v = p.second;
 
-                if (dist[v] < p.first)
+                if (weight[v] < p.first)
                     continue;
 
                 for (int i = 0; i < (int)g[v].size(); i++) {
-                    edge &e = g[v][i];
-                    int ndist = dist[v] + e.cost + h[v] - h[e.to];
-                    if (e.cap > 0 && dist[e.to] > ndist) {
-                        dist[e.to] = ndist;
+                    edge<T> &e = g[v][i];
+                    T nweight = weight[v] + e.cost + h[v] - h[e.to];
+                    if (e.cap > 0 && weight[e.to] > nweight) {
+                        weight[e.to] = nweight;
                         prevv[e.to] = v;
                         preve[e.to] = i;
-                        que.emplace(dist[e.to], e.to);
+                        pq.emplace(weight[e.to], e.to);
                     }
                 }
             }
 
-            if (dist[t] == INF)
+            if (weight[t] == INF)
                 return -1;
 
             for (int v = 0; v < (int)g.size(); v++)
-                h[v] += dist[v];
+                h[v] += weight[v];
 
             int d = f;
             for (int v = t; v != s; v = prevv[v])
@@ -72,7 +75,7 @@ public:
             f -= d;
             res += d * h[t];
             for (int v = t; v != s; v = prevv[v]) {
-                edge &e = g[prevv[v]][preve[v]];
+                edge<T> &e = g[prevv[v]][preve[v]];
                 e.cap -= d;
                 g[v][e.rev].cap += d;
             }
