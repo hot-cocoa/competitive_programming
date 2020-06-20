@@ -1,29 +1,32 @@
 #include <vector>
 #include <queue>
 
+template<class T>
 struct edge {
-    int to, cost;
-    edge(int to, int cost) : to{to}, cost{cost} {}
+    int to;
+    T cost;
+    edge(int to, T cost) : to{to}, cost{cost} {}
 };
 
-using vec = std::vector<edge>;
-using Graph = std::vector<vec>;
+template<class T>
+using Graph = std::vector<std::vector<edge<T>>>;
 
+template<class T>
 class MinimumSpanningTree {
 private:
-    using pii = std::pair<int, int>;
+    using State = std::pair<T, int>;
 
 public:
     // prim
-    int solve(const Graph &g)
+    T solve(const Graph<T> &g)
     {
-        std::priority_queue<pii, std::vector<pii>, std::greater<pii>> pq;
+        std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
         pq.emplace(0, 0);
 
         std::vector<bool> visited(g.size());
-        int total_cost = 0;
+        T total_cost = 0;
         while (!pq.empty()) {
-            pii p = pq.top(); pq.pop();
+            State p = pq.top(); pq.pop();
 
             int curr = p.second;
             if (visited[curr])
@@ -32,7 +35,7 @@ public:
             visited[curr] = true;
             total_cost += p.first;
 
-            for (edge e : g[curr])
+            for (auto e : g[curr])
                 pq.emplace(e.cost, e.to);
         }
 
