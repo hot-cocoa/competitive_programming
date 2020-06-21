@@ -43,9 +43,9 @@ public:
         insert(s, nodes.at(0).exist);
     }
 
-    int find(const std::string &s)
+    int find(const std::string &s, int idx = 0)
     {
-        int curr = 0;
+        int curr = idx;
         for (const auto &c : s) {
             if (!nodes.at(curr).next.count(c))
                 return -1;
