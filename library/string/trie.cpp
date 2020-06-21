@@ -22,16 +22,16 @@ private:
     {
         int curr = 0;
         for (const auto &c : s) {
-            if (!nodes.next.count(c)) {
+            if (!nodes.at(curr).next.count(c)) {
                 int n = nodes.size();
                 push();
-                nodes.at(n).next.emplace(c, n);
+                nodes.at(curr).next.emplace(c, n);
             }
             nodes.at(curr).exist++;
-            curr = nodes.at(curr).next(c);
+            curr = nodes.at(curr).next.at(c);
         }
         nodes.at(curr).exist++;
-        nodes.at(curr).accepts(id);
+        nodes.at(curr).accepts.emplace_back(id);
     }
 
 public:
@@ -50,7 +50,7 @@ public:
             if (!nodes.at(curr).next.count(c))
                 return -1;
 
-            curr = nodes.at(curr).next(c);
+            curr = nodes.at(curr).next.at(c);
         }
         return curr;
     }
