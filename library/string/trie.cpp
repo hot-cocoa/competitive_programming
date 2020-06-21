@@ -43,8 +43,15 @@ public:
         insert(s, nodes.at(0).exist);
     }
 
-    bool find(const std::string &s)
+    int find(const std::string &s)
     {
+        int curr = 0;
+        for (const auto &c : s) {
+            if (!nodes.at(curr).next.count(c))
+                return -1;
 
+            curr = nodes.at(curr).next(c);
+        }
+        return curr;
     }
 };
