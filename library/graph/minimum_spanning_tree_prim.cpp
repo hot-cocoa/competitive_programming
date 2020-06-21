@@ -4,8 +4,8 @@
 template<class T>
 struct edge {
     int to;
-    T cost;
-    edge(int to, T cost) : to{to}, cost{cost} {}
+    T weight;
+    edge(int to, T weight) : to{to}, weight{weight} {}
 };
 
 template<class T>
@@ -17,14 +17,13 @@ private:
     using State = std::pair<T, int>;
 
 public:
-    // prim
     T solve(const Graph<T> &g)
     {
         std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
         pq.emplace(0, 0);
 
         std::vector<bool> visited(g.size());
-        T total_cost = 0;
+        T total_weight = 0;
         while (!pq.empty()) {
             State p = pq.top(); pq.pop();
 
@@ -33,12 +32,12 @@ public:
                 continue;
 
             visited[curr] = true;
-            total_cost += p.first;
+            total_weight += p.first;
 
             for (auto e : g[curr])
-                pq.emplace(e.cost, e.to);
+                pq.emplace(e.weight, e.to);
         }
 
-        return total_cost;
+        return total_weight;
     }
 };
