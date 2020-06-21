@@ -1,36 +1,46 @@
 #include <vector>
 #include <string>
-#include <functional>
+#include <map>
 
-using F = std::function<int(char)>;
-
-template<int size>
+template<typename Type>
 class Trie {
 private:
     class Node {
     public:
         int exist;
-        std::vector<int> next;
+        std::map<Type, int> next;
         std::vector<int> accepts;
-
-        Node()
-        {
-            exist = 0;
-            next.assign(size, -1);
-        }
+        Node() : exist{0} {}
     };
+
+    void push(Node node = Node())
+    {
+        nodes.emplace_back(node);
+    }
+
+    void insert(const std::string &s, int id)
+    {
+        int curr = 0;
+        for (const auto &c : s) {
+            if (!nodes.next.count(c)) {
+                int n = nodes.size();
+                push();
+                nodes.at(n).next.emplace(c, n);
+            }
+            nodes.at(curr).exist++;
+            curr = nodes.at(curr).next(c);
+        }
+        nodes.at(curr).exist++;
+        nodes.at(curr).accepts(id);
+    }
 
 public:
     std::vector<Node> nodes;
+    Trie() { push(); }
 
-    Trie()
+    void insert(const std::string &s)
     {
-        nodes.emplace_back(Node());
-    }
-
-    void insert(const std::string &s, const F &to_int)
-    {
-
+        insert(s, nodes.at(0).exist);
     }
 
     bool find(const std::string &s)
