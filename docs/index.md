@@ -74,3 +74,4 @@
 - [最長回文(Manacher)](./library/string/longest_palindrome.md)
 - [ローリングハッシュ](./library/string/rolling_hash.md)
 - [接尾辞配列](./library/string/suffix_array.md)
+- [Trie木](./library/string/trie.md)
