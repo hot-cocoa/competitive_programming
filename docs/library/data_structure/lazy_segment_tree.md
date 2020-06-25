@@ -83,8 +83,8 @@ private:
     }
 public:
     LazySegmentTree(
-        int N, const FT &ft, const FX &fx, const FU &fu, const FS &fs,
-        const T &et, const U &eu) : ft{ft}, fx{fx}, fu{fu}, fs{fs}, et{et}, eu{eu}
+        int N, const FT& ft, const FX& fx, const FU& fu, const FS& fs,
+        const T& et, const U& eu) : ft{ft}, fx{fx}, fu{fu}, fs{fs}, et{et}, eu{eu}
     {
         build(N);
     }

@@ -13,7 +13,7 @@ template<class Weight>
 class TreeHeight {
     Graph<edge> g;
 
-    int dfs(Graph<edge> &t, int u, int v)
+    int dfs(const Graph<edge>& t, int u, int v)
     {
         if (t[u][v].weight >= 0)
             return t[u][v].weight;
@@ -31,14 +31,14 @@ class TreeHeight {
     }
 
 public:
-    TreeHeight(Graph<edge> g) : g{g} {}
+    TreeHeight(const Graph<edge>& g) : g{g} {}
 
     std::vector<Weight> heights()
     {
         const int N = g.size();
         Graph<edge> t(g);
         for (int i = 0; i < N; i++)
-            for (edge &e : t[i])
+            for (edge& e : t[i])
                 e.weight = -1;
 
         for (int i = 0; i < N; i++)
@@ -49,7 +49,7 @@ public:
         std::vector<Weight> heights(N);
         for (int i = 0; i < N; i++) {
             int max_weight = 0;
-            for (const edge &e : t[i])
+            for (const edge& e : t[i])
                 max_weight = std::max(max_weight, e.weight);
 
             heights[i] = max_weight;

@@ -27,7 +27,7 @@ class TreeDiameter {
     Result dfs(int par, int curr)
     {
         Result ret(0, curr);
-        for (const edge &e : g[curr]) {
+        for (const edge& e : g[curr]) {
             if (e.to == par)
                 continue;
 
@@ -39,7 +39,7 @@ class TreeDiameter {
     }
 
 public:
-    TreeDiameter(Graph<edge> g) : g{g} {}
+    TreeDiameter(const Graph<edge>& g) : g{g} {}
 
     Weight tree_diameter()
     {

@@ -4,19 +4,19 @@ using Polygon = std::vector<Point>;
 using PolygonItr = std::vector<Point>::iterator;
 
 template<class T>
-T prev(const std::vector<T> &x, int idx)
+T prev(const std::vector<T>& x, int idx)
 {
     return x[(idx - 1 + x.size()) % x.size()];
 }
 
 template<class T>
-T curr(const std::vector<T> &x, int idx)
+T curr(const std::vector<T>& x, int idx)
 {
     return x[idx % x.size()];
 }
 
 template<class T>
-T next(const std::vector<T> &x, int idx)
+T next(const std::vector<T>& x, int idx)
 {
     return x[(idx + 1) % x.size()];
 }
@@ -60,7 +60,7 @@ private:
                 closest_pair(pg + M, N - M)
             );
 
-        auto compare_y = [](const Point &a, const Point &b) -> bool
+        auto compare_y = [](const Point& a, const Point& b) -> bool
         {
             return a.y < b.y;
         };
@@ -83,7 +83,7 @@ private:
     }
 
 public:
-    static double area(const Polygon &p)
+    static double area(const Polygon& p)
     {
         double res = 0;
         for (int i = 0; i < (int)p.size(); i++)
@@ -93,11 +93,11 @@ public:
         return res / 2.0;
     }
 
-    static bool is_convex(const Polygon &p)
+    static bool is_convex(const Polygon& p)
     {
-        auto is_clock_wise = [](const Polygon &p, int idx) -> bool
+        auto is_clock_wise = [](const Polygon& p, int idx) -> bool
         {
-            const auto &ccw = CounterClockWise::ccw;
+            const auto& ccw = CounterClockWise::ccw;
             auto pp = prev<Point>(p, idx);
             auto cp = curr<Point>(p, idx);
             auto np = next<Point>(p, idx);
@@ -111,10 +111,10 @@ public:
         return true;
     }
 
-    static PolygonPointRelation contain_pp(const Polygon &pg, const Point &p)
+    static PolygonPointRelation contain_pp(const Polygon& pg, const Point& p)
     {
-        const auto &cross = PointOperator::cross;
-        const auto &dot   = PointOperator::dot;
+        const auto& cross = PointOperator::cross;
+        const auto& dot   = PointOperator::dot;
 
         int N = pg.size();
         bool in = false;
@@ -135,7 +135,7 @@ public:
                      PolygonPointRelation::OUTSIDE);
     }
 
-    static Polygon convex_hull(const Polygon &base)
+    static Polygon convex_hull(const Polygon& base)
     {
         int N = base.size();
         Polygon pg(N * 2);
@@ -143,7 +143,7 @@ public:
         std::sort(ps.begin(), ps.end(), sort_y);
 
         int j = 0;
-        const auto &cross = PointOperator::cross;
+        const auto& cross = PointOperator::cross;
         for (int i = 0; i < N; i++) {
             while (j > 1 && cross(pg[j - 1] - pg[j - 2], ps[i] - pg[j - 1]) < 0)
                 j--;
@@ -161,9 +161,9 @@ public:
         return pg;
     }
 
-    static double polygon_diameter(const Polygon &pg)
+    static double polygon_diameter(const Polygon& pg)
     {
-        const auto &dist = PointOperator::dist;
+        const auto& dist = PointOperator::dist;
 
         Polygon np = convex_hull(pg);
         int N = np.size();
@@ -194,9 +194,9 @@ public:
         return diameter;
     }
 
-    static Polygon convex_cut(const Polygon &pg, const Line &l)
+    static Polygon convex_cut(const Polygon& pg, const Line& l)
     {
-        const auto &ccw = CounterClockWise::ccw;
+        const auto& ccw = CounterClockWise::ccw;
 
         Polygon cutted_polygon;
         for (int i = 0; i < (int)pg.size(); i++) {
@@ -213,7 +213,7 @@ public:
         return cutted_polygon;
     }
 
-    static double closest_pair(const Polygon &pg)
+    static double closest_pair(const Polygon& pg)
     {
         Polygon p = pg;
         std::sort(p.begin(), p.end());

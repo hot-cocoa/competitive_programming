@@ -12,8 +12,8 @@ O(NM)
 #include <algorithm>
 
 std::string restore(
-    const std::vector<std::vector<int>> &route,
-    const std::string &s,
+    const std::vector<std::vector<int>>& route,
+    const std::string& s,
     int len1, int len2
 )
 {
@@ -33,8 +33,8 @@ std::string restore(
 }
 
 std::pair<int, std::string> longest_common_subsequence(
-    const std::string s1,
-    const std::string s2
+    const std::string& s1,
+    const std::string& s2
 )
 {
     int N = s1.size();

@@ -41,7 +41,7 @@ private:
             fact[i + 1] = fact[i] * (i + 1) % MOD;
      }
 
-    int64 extgcd(int64 a, int64 b, int64 &x, int64 &y)
+    int64 extgcd(int64 a, int64 b, int64& x, int64& y)
     {
         int d = a;
         if (b != 0) {
@@ -61,7 +61,7 @@ private:
         return (m + x % m) % m;
     }
 
-    int64 mod_fact(int n, int64 p, int64 &e)
+    int64 mod_fact(int n, int64 p, int64& e)
     {
         e = 0;
         if (n == 0)

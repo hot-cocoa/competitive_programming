@@ -18,7 +18,7 @@ private:
     std::string s;
     std::vector<int> sa;
 
-    void build(const std::string &s)
+    void build(const std::string& s)
     {
         N = s.size();
         sa.resize(N + 1);
@@ -52,11 +52,11 @@ private:
     }
 
 public:
-    SuffixArray(const std::string &s) : s{s} {
+    SuffixArray(const std::string& s) : s{s} {
         build(s);
     }
 
-    bool contain(const std::string &t)
+    bool contain(const std::string& t)
     {
         int l = 0, r = N;
         while (r - l > 1) {

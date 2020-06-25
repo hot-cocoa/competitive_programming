@@ -44,7 +44,7 @@ public:
     constexpr static T NOT_FOUND = -1;
 
     TravelingSalesman(int V) : V{V} { g.resize(V); }
-    TravelingSalesman(const Graph<T> &g) : g{g} { V = g.size(); }
+    TravelingSalesman(const Graph<T>& g) : g{g} { V = g.size(); }
 
     void add_edge(int src, int dst, T weight)
     {

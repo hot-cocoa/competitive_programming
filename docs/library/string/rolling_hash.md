@@ -19,7 +19,7 @@ private:
     std::vector<ull> h;
     std::vector<ull> p;
 
-    void build(const std::string &s)
+    void build(const std::string& s)
     {
         int size = s.size();
         h.resize(size + 1);
@@ -33,7 +33,7 @@ private:
     }
 
 public:
-    RollingHash(const std::string &s)
+    RollingHash(const std::string& s)
     {
         build(s);
     }

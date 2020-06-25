@@ -68,7 +68,7 @@ private:
     }
 
 public:
-    ChromaticNumber(const Matrix &con) : con{con} {
+    ChromaticNumber(const Matrix& con) : con{con} {
         build();
     }
 

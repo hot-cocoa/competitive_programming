@@ -2,7 +2,7 @@
 #include <string>
 
 // Manacher's algorithm
-std::vector<int> longest_palindrome(const std::string &s)
+std::vector<int> longest_palindrome(const std::string& s)
 {
     int N = s.size();
     std::vector<int> radius(N);

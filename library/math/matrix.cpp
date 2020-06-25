@@ -10,7 +10,7 @@ private:
     MatrixOperator() {}
 
 public:
-    static mat mul(const mat &A, const mat &B)
+    static mat mul(const mat& A, const mat& B)
     {
         mat C(A.size(), vec(B[0].size()));
         for (int i = 0; i < (int)A.size(); i++)

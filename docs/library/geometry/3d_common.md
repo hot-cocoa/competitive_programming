@@ -24,12 +24,12 @@ public:
     Point() {}
     Point(double x, double y, double z) : x{x}, y{y}, z{z} {}
 
-    Point operator + (const Point &p) const
+    Point operator + (const Point& p) const
     {
         return {x + p.x, y + p.y, z + p.z};
     }
 
-    Point operator - (const Point &p) const
+    Point operator - (const Point& p) const
     {
         return {x - p.x, y - p.y, z - p.z};
     }
@@ -44,12 +44,12 @@ public:
         return {x / k, y / k, z / k};
     }
 
-    bool operator == (const Point &p) const
+    bool operator == (const Point& p) const
     {
         return equals(x, p.x) && equals(y, p.y) && equals(z, p.z);
     }
 
-    bool operator != (const Point &p) const
+    bool operator != (const Point& p) const
     {
         return !(*this == p);
     }
@@ -57,12 +57,12 @@ public:
 
 class PointOperator {
 public:
-    static double dot(const Point &a, const Point &b)
+    static double dot(const Point& a, const Point& b)
     {
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
-    static Point cross_vec(const Point &a, const Point &b)
+    static Point cross_vec(const Point& a, const Point& b)
     {
         return {
             a.y * b.z - a.z * b.y,
@@ -71,27 +71,27 @@ public:
         };
     }
 
-    static double cross(const Point &a, const Point &b)
+    static double cross(const Point& a, const Point& b)
     {
         return abs(cross_vec(a, b));
     }
 
-    static double norm(const Point &p)
+    static double norm(const Point& p)
     {
         return dot(p, p);
     }
 
-    static double norm(const Point &a, const Point &b)
+    static double norm(const Point& a, const Point& b)
     {
         return norm(a - b);
     }
 
-    static double abs(const Point &p)
+    static double abs(const Point& p)
     {
         return sqrt(norm(p));
     }
 
-    static double dist(const Point &a, const Point &b)
+    static double dist(const Point& a, const Point& b)
     {
         return abs(a - b);
     }
@@ -99,7 +99,7 @@ public:
 
 using Vector = Point;
 
-std::istream &operator >> (std::istream &is, Point &p)
+std::istream& operator >> (std::istream& is, Point& p)
 {
     return is >> p.x >> p.y >> p.z;
 }
@@ -108,12 +108,12 @@ class Segment {
 public:
     Point s, t;
     Segment() {}
-    Segment(const Point &s, const Point &t) : s{s}, t{t} {}
+    Segment(const Point& s, const Point& t) : s{s}, t{t} {}
 };
 
 class SegmentUtil {
 public:
-    static Point projection(const Segment &s, const Point &p)
+    static Point projection(const Segment& s, const Point& p)
     {
         Vector v = s.t - s.s;
         double t =
@@ -122,12 +122,12 @@ public:
         return s.s + v * t;
     }
 
-    static Point reflection(const Segment &s, const Point &p)
+    static Point reflection(const Segment& s, const Point& p)
     {
         return p + (projection(s, p) - p) * 2.0;
     }
 
-    static double distance_sp(const Segment &s, const Point &p)
+    static double distance_sp(const Segment& s, const Point& p)
     {
         double a = PointOperator::dot(s.t - s.s, s.t - s.s);
         double b = PointOperator::dot(s.t - s.s, s.s - p);
@@ -141,7 +141,7 @@ public:
         return a * t * t + 2 * b * t + c;
     }
 
-    double distance_ss(const Segment &s1, const Segment &s2)
+    double distance_ss(const Segment& s1, const Segment& s2)
     {
         Point v1 = s1.t - s1.s, v2 = s2.t - s2.s, v3 = s1.s - s2.s;
         double a = +PointOperator::dot(v1, v1);
@@ -173,12 +173,12 @@ using Line = Segment;
 
 class LineUtil : SegmentUtil {
 public:
-    static double distance_lp(const Line &l, const Point &p)
+    static double distance_lp(const Line& l, const Point& p)
     {
         return PointOperator::abs(p - projection(l, p));
     }
 
-    static double distance_ll(const Line &a, const Line &b)
+    static double distance_ll(const Line& a, const Line& b)
     {
         Vector v = PointOperator::cross_vec(a.t - a.s, b.t - b.s);
         Point p = a.s - b.s;

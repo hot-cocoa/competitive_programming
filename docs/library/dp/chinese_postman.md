@@ -22,7 +22,7 @@ public:
     Edge(int src, int dst, T weight) :
         src{src}, dst{dst}, weight{weight} {}
 
-    bool operator < (const Edge<T> &e) const
+    bool operator < (const Edge<T>& e) const
     {
         if (weight != e.weight)
             return weight > e.weight;
@@ -44,7 +44,7 @@ private:
 
 public:
     ChinesePostman(int V) { g.resize(V); }
-    ChinesePostman(const Graph<T> &g) : g{g} {}
+    ChinesePostman(const Graph<T>& g) : g{g} {}
 
     void add_edge(int src, int dst, T weight)
     {

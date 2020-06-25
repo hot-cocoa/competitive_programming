@@ -21,18 +21,18 @@ public:
 
 class CircleUtil {
 public:
-    static bool intersect_cp(const Circle &c, const Point &p)
+    static bool intersect_cp(const Circle& c, const Point& p)
     {
         return PointOperator::abs(c.p - p) <= c.r + EPS;
     }
 
-    static bool intersect_cc(const Circle &a, const Circle &b)
+    static bool intersect_cc(const Circle& a, const Circle& b)
     {
         double d = PointOperator::abs(a.p - b.p);
         return d <= a.r + b.r && d >= abs(a.r - b.r);
     }
 
-    static std::vector<Point> crosspoint_cc(const Circle &a, const Circle &b)
+    static std::vector<Point> crosspoint_cc(const Circle& a, const Circle& b)
     {
         double d = PointOperator::abs(a.p - b.p);
         if (!intersect_cc(a, b) || d < EPS)
@@ -44,7 +44,7 @@ public:
         return {a.p + p * Point{rc, rs}, a.p + p * Point{rc, -rs}};
     }
 
-    static std::vector<Point> crosspoint_cl(const Circle &c, const Line &l)
+    static std::vector<Point> crosspoint_cl(const Circle& c, const Line& l)
     {
         double d = LineUtil::distance_lp(l, c.p);
         if (d > c.r)
@@ -56,7 +56,7 @@ public:
         return {p + v * d, p - v * d};
     }
 
-    static std::vector<Point> tangent_cp(const Circle &c, const Point &p)
+    static std::vector<Point> tangent_cp(const Circle& c, const Point& p)
     {
         double x = PointOperator::norm(p - c.p);
         double d = x - c.r * c.r;
@@ -71,7 +71,7 @@ public:
         return {c.p + p1 - p2, c.p + p1 + p2};
     }
 
-    static std::set<Line> tangent_cc(const Circle &a, const Circle &b)
+    static std::set<Line> tangent_cc(const Circle& a, const Circle& b)
     {
         if (PointOperator::abs(b.p - a.p) < EPS)
             return {};
@@ -100,7 +100,7 @@ public:
         return common_lines;
     }
 
-    static Circle smallest_enclosing_circle(const std::vector<Point> &ps)
+    static Circle smallest_enclosing_circle(const std::vector<Point>& ps)
     {
         const auto &abs = PointOperator::abs;
         Point p{0, 0};

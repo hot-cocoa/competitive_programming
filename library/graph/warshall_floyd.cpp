@@ -14,7 +14,7 @@ class WarshallFloyd {
     }
 
 public:
-    WarshallFloyd(Graph g) : g{g} { init(g.size()); }
+    WarshallFloyd(const Graph& g) : g{g} { init(g.size()); }
 
     Graph shortest_path_all()
     {

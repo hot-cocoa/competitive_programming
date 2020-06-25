@@ -17,12 +17,12 @@ public:
     Point() {}
     Point(double x, double y) : x{x}, y{y} {}
 
-    Point operator + (const Point &p) const
+    Point operator + (const Point& p) const
     {
         return {x + p.x, y + p.y};
     }
 
-    Point operator - (const Point &p) const
+    Point operator - (const Point& p) const
     {
         return {x - p.x, y - p.y};
     }
@@ -37,33 +37,33 @@ public:
         return {x / k, y / k};
     }
 
-    bool operator < (const Point &p) const
+    bool operator < (const Point& p) const
     {
         return x != p.x ? x < p.x : y < p.y;
     }
 
-    bool operator == (const Point &p) const
+    bool operator == (const Point& p) const
     {
         return equals(x, p.x) && equals(y, p.y);
     }
 
-    bool operator != (const Point &p) const
+    bool operator != (const Point& p) const
     {
         return !(Point{x, y} == p);
     }
 };
 
-Point operator * (const Point &a, const Point &b)
+Point operator * (const Point& a, const Point& b)
 {
     return {a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x};
 }
 
-std::istream &operator >> (std::istream &is, Point &p)
+std::istream& operator >> (std::istream& is, Point& p)
 {
     return is >> p.x >> p.y;
 }
 
-std::ostream &operator << (std::ostream os, Point &p)
+std::ostream& operator << (std::ostream os, Point& p)
 {
     return os << "(" << p.x << " " << p.y << ")";
 }
@@ -72,27 +72,27 @@ using Vector = Point;
 
 class PointOperator {
 public:
-    static double dot(const Point &a, const Point &b)
+    static double dot(const Point& a, const Point& b)
     {
         return a.x * b.x + a.y * b.y;
     }
 
-    static double cross(const Point &a, const Point &b)
+    static double cross(const Point& a, const Point& b)
     {
         return a.x * b.y - a.y * b.x;
     }
 
-    static double norm(const Point &p)
+    static double norm(const Point& p)
     {
         return dot(p, p);
     }
 
-    static double abs(const Point &p)
+    static double abs(const Point& p)
     {
         return sqrt(norm(p));
     }
 
-    static double dist(const Point &a, const Point &b)
+    static double dist(const Point& a, const Point& b)
     {
         return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
     }
@@ -114,7 +114,7 @@ public:
     }
     // unverified
     static double angle_between_vectors(
-        const Point &a, const Point &b, const Point &c)
+        const Point& a, const Point& b, const Point& c)
     {
         Vector v1 = b - a;
         Vector v2 = c - a;
@@ -122,7 +122,7 @@ public:
     }
     // unverified
     static double angle_between_vectors(
-        const Vector &v1, const Vector &v2)
+        const Vector& v1, const Vector& v2)
     {
         double aat = atan2(v1.y, v1.x);
         double bat = atan2(v2.y, v2.x);
@@ -137,7 +137,7 @@ public:
 class Rotation {
 public:
     // unverified
-    static Point rotate(const Point &p, double th /* => rad */)
+    static Point rotate(const Point& p, double th /* => rad */)
     {
         return {
             cos(th) * p.x - sin(th) * p.y,
@@ -145,13 +145,13 @@ public:
         };
     }
     // unverified
-    static Point rotate(const Point &p, double th, double cx, double cy)
+    static Point rotate(const Point& p, double th, double cx, double cy)
     {
         // rotate around (cx, cy)
         return rotate({p.x - cx, p.y - cy}, th);
     }
 
-    static Point rotate90(const Point &p)
+    static Point rotate90(const Point& p)
     {
         return {-p.y, p.x};
     }
@@ -169,7 +169,7 @@ enum CcwIdentification : int {
 class CounterClockWise {
 public:
     static CcwIdentification ccw(
-        const Point &p0, const Point &p1, const Point &p2)
+        const Point& p0, const Point& p1, const Point& p2)
     {
         Vector a = p1 - p0;
         Vector b = p2 - p0;
@@ -199,9 +199,9 @@ public:
     Point s;
     Point t;
 
-    Segment(const Point &s, const Point &t) : s{s}, t{t} {}
+    Segment(const Point& s, const Point& t) : s{s}, t{t} {}
 
-    bool operator < (const Segment &sg) const
+    bool operator < (const Segment& sg) const
     {
         if (s != sg.s)
             return s < sg.s;
@@ -214,7 +214,7 @@ class SegmentUtil {
 public:
     // unverified
     static std::vector<Point> get_points_on_segment(
-        const Segment &s, int N /* -> # of division */)
+        const Segment& s, int N /* -> # of division */)
     {
         Point p1 = s.s, p2 = s.t;
         std::vector<Point> points_on_segment;
@@ -226,7 +226,7 @@ public:
         return points_on_segment;
     }
 
-    static Point projection(const Segment &s, const Point &p)
+    static Point projection(const Segment& s, const Point& p)
     {
         Vector v = s.t - s.s;
         double t =
@@ -235,12 +235,12 @@ public:
         return s.s + v * t;
     }
 
-    static Point reflection(const Segment &s, const Point &p)
+    static Point reflection(const Segment& s, const Point& p)
     {
         return p + (projection(s, p) - p) * 2.0;
     }
 
-    static bool intersect_ss(const Segment &a, const Segment &b)
+    static bool intersect_ss(const Segment& a, const Segment& b)
     {
         std::vector<Point> s{a.s, a.t}, t{b.s, b.t};
         const auto &ccw = CounterClockWise::ccw;
@@ -250,22 +250,22 @@ public:
         );
     }
 
-    static bool intersect_sp(const Segment &s, const Point &p)
+    static bool intersect_sp(const Segment& s, const Point& p)
     {
-        const auto &ccw = CounterClockWise::ccw;
+        const auto& ccw = CounterClockWise::ccw;
         return ccw(s.s, s.t, p) == CcwIdentification::ON_SEGMENT;
     }
 
-    static Point crosspoint_ss(const Segment &a, const Segment &b)
+    static Point crosspoint_ss(const Segment& a, const Segment& b)
     {
         Vector va = a.t - a.s, vb = b.t - b.s;
-        const auto &cross = PointOperator::cross;
+        const auto& cross = PointOperator::cross;
         return a.s + va * cross(vb, b.t - a.s) * (1.0 / cross(vb, va));
     }
 
-    static double distance_sp(const Segment &s, const Point &p)
+    static double distance_sp(const Segment& s, const Point& p)
     {
-        const auto &abs = PointOperator::abs;
+        const auto& abs = PointOperator::abs;
         Point r = projection(s, p);
         if (intersect_sp(s, r))
             return abs(r - p);
@@ -273,7 +273,7 @@ public:
         return std::min(abs(s.s - p), abs(s.t - p));
     }
 
-    static double distance_ss(const Segment &a, const Segment &b)
+    static double distance_ss(const Segment& a, const Segment& b)
     {
         if (intersect_ss(a, b))
             return 0;
@@ -284,14 +284,14 @@ public:
         );
     }
 
-    static bool orthogonal_ss(const Segment &a, const Segment &b)
+    static bool orthogonal_ss(const Segment& a, const Segment& b)
     {
         Vector va = a.t - a.s;
         Vector vb = b.t - b.s;
         return equals<double>(PointOperator::dot(va, vb), 0);
     }
 
-    static bool parallel_ss(const Segment &a, const Segment &b)
+    static bool parallel_ss(const Segment& a, const Segment& b)
     {
         Vector va = a.t - a.s;
         Vector vb = b.t - b.s;
@@ -317,7 +317,7 @@ using Graph = std::vector<Edges>;
 class SegmentArrangement {
 public:
     Graph make_graph(
-        const std::vector<Segment> &segs, std::vector<Point> &ps)
+        const std::vector<Segment>& segs, std::vector<Point>& ps)
     {
         Graph g;
         int N = segs.size();
@@ -342,7 +342,7 @@ public:
         int psN = ps.size();
         g.resize(psN);
 
-        const auto &dist = PointOperator::dist;
+        const auto& dist = PointOperator::dist;
         for (int i = 0; i < N; i++) {
             std::vector<std::pair<double, int>> vec;
             for (int j = 0; j < psN; j++) {
@@ -366,7 +366,7 @@ using Line = Segment;
 
 class LineUtil : public SegmentUtil {
 private:
-    static Line get_perpendicular_bisector(const Point &a, const Point &b)
+    static Line get_perpendicular_bisector(const Point& a, const Point& b)
     {
         double cx = (a.x + b.x) / 2.0;
         double cy = (a.y + b.y) / 2.0;
@@ -378,7 +378,7 @@ private:
 
 public:
     // unverified
-    static std::vector<Vector> normal_line_vector(const Line &l)
+    static std::vector<Vector> normal_line_vector(const Line& l)
     {
         Vector v = l.t - l.s;
         Point p = v / PointOperator::abs(v);
@@ -390,7 +390,7 @@ public:
     }
 
     // unverified
-    static std::vector<Line> translation(const Line &l, double d)
+    static std::vector<Line> translation(const Line& l, double d)
     {
         std::vector<Vector> nlv = normal_line_vector(l);
         return {
@@ -400,13 +400,13 @@ public:
     }
 
     // unverified
-    static Line get_perpendicular_bisector(const Line &l)
+    static Line get_perpendicular_bisector(const Line& l)
     {
         return get_perpendicular_bisector(l.s, l.t);
     }
 
     // unverified
-    static bool intersect_ll(const Line &a, const Line &b)
+    static bool intersect_ll(const Line& a, const Line& b)
     {
         const auto &cross = PointOperator::cross;
 
@@ -417,9 +417,9 @@ public:
     }
 
     // unverified
-    static bool intersect_lp(const Line &l, const Point &p)
+    static bool intersect_lp(const Line& l, const Point& p)
     {
-        const auto &res = CounterClockWise::ccw(l.s, l.t, p);
+        const auto& res = CounterClockWise::ccw(l.s, l.t, p);
         bool is_counter_clock_wise =
             (res == CcwIdentification::COUNTER_CLOCKWISE);
         bool is_clock_wise =
@@ -429,17 +429,17 @@ public:
     }
 
     // unverified
-    static bool intersect_ls(const Line &l, const Segment &s)
+    static bool intersect_ls(const Line& l, const Segment& s)
     {
-        const auto &cross = PointOperator::cross;
+        const auto& cross = PointOperator::cross;
         return cross(l.t - l.s, s.s - l.s) * cross(l.t - l.s, s.t - l.s) < EPS;
     }
 
     // unverified
-    static Point crosspoint_ll(const Line &a, const Line &b)
+    static Point crosspoint_ll(const Line& a, const Line& b)
     {
         Vector va = a.t - a.s, vb = b.t - b.s;
-        const auto &cross = PointOperator::cross;
+        const auto& cross = PointOperator::cross;
 
         double d = cross(vb, va);
         if (abs(d) < EPS)
@@ -449,13 +449,13 @@ public:
     }
 
     // unverified
-    static double distance_lp(const Line &l, const Point &p)
+    static double distance_lp(const Line& l, const Point& p)
     {
         return PointOperator::abs(p - projection(l, p));
     }
 
     // unverified
-    static double distance_ll(const Line &a, const Line &b)
+    static double distance_ll(const Line& a, const Line& b)
     {
         if (intersect_ll(a, b))
             return 0.0;
@@ -464,7 +464,7 @@ public:
     }
 
     // unverified
-    double distance_ls(const Line &l, const Segment &s)
+    double distance_ls(const Line& l, const Segment& s)
     {
         if (intersect_ls(l, s))
             return 0.0;
@@ -476,10 +476,10 @@ public:
 class Triangle {
 public:
     // unverified
-    double area(const Point &a, const Point &b, const Point &c)
+    double area(const Point& a, const Point& b, const Point& c)
     {
         // solve by heron's formula
-        const auto dist = PointOperator::dist;
+        const auto& dist = PointOperator::dist;
         double p = dist(a, b), q = dist(a, c), r = dist(b, c);
         double s = (p + q + r) / 2;
         return sqrt(s * (s - p) * (s - q) * (s - r));

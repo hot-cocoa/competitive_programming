@@ -18,7 +18,7 @@ public:
     T weight;
     Edge(int u, int v, T weight) : u{u}, v{v}, weight{weight} {}
 
-    bool operator < (const Edge<T> &e)
+    bool operator < (const Edge<T>& e)
     {
         return weight < e.weight;
     }

@@ -29,7 +29,7 @@ private:
     const Graph<T> g;
 
 public:
-    BreadthFirstSearch(const Graph<T> &g) : g{g} {}
+    BreadthFirstSearch(const Graph<T>& g) : g{g} {}
 
     std::vector<int> solve(int s)
     {

@@ -44,7 +44,7 @@ private:
     }
 
 public:
-    CycleDetector(Graph g) : g{g} { init(g.size()); }
+    CycleDetector(const Graph& g) : g{g} { init(g.size()); }
 
     bool exists_cycle()
     {

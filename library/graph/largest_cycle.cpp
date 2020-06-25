@@ -19,13 +19,13 @@ private:
                 largest = std::max(largest, dfs(to, c + 1));
             else if (visited[to] == 0)
                 largest = std::max(largest, num[v] - num[to] + 1);
-                
+
         visited[v] = 1;
         return largest;
     }
 
 public:
-    CycleOperator(const Graph &g) : g{g} {}
+    CycleOperator(const Graph& g) : g{g} {}
 
     int largest_cycle()
     {

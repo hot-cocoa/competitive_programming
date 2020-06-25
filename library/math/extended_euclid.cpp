@@ -2,7 +2,7 @@
  * Find (x, y) that satisfieds the following formula.
  * ax + by = gcd(a, b)
  */
-int extgcd(int a, int b, int &x, int &y)
+int extgcd(int a, int b, int& x, int& y)
 {
     int d = a;
     if (b != 0) {

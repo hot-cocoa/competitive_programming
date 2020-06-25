@@ -15,7 +15,7 @@ O(NM)
 using Vec = std::vector<int>;
 using Mat = std::vector<Vec>;
 
-int largest_rectangle(Mat &m)
+int largest_rectangle(const Mat& m)
 {
     int N = m.size(), M = m[0].size();
     Vec dp(M + 1, 0);

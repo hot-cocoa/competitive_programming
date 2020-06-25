@@ -26,14 +26,14 @@ private:
 
         State(int v, T weight) : v{v}, weight{weight} {}
 
-        bool operator < (const State &s) const
+        bool operator < (const State& s) const
         {
             return weight > s.weight;
         }
     };
 
 public:
-    Dijkstra(Graph<T> g) : g{g} {}
+    Dijkstra(const Graph<T>& g) : g{g} {}
 
     std::vector<T> shortest_path(int s)
     {
@@ -43,7 +43,7 @@ public:
         std::vector<T> weight(g.size(), INF);
         weight[s] = 0;
 
-        const auto &update = [&](const edge<T> &e, const State &s) -> bool
+        const auto &update = [&](const edge<T>& e, const State& s) -> bool
         {
             if (weight[s.v] + e.weight >= weight[e.to])
                 return false;

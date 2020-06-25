@@ -34,7 +34,7 @@ private:
     }
 
 public:
-    CycleOperator(const Graph &g) : g{g} {}
+    CycleOperator(const Graph& g) : g{g} {}
 
     int largest_cycle()
     {

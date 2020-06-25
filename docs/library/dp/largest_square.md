@@ -14,7 +14,7 @@ O(NM)
 using Vec = std::vector<int>;
 using Mat = std::vector<Vec>;
 
-int largest_square(const Mat &m)
+int largest_square(const Mat& m)
 {
     int N = m.size(), M = m[0].size();
     Mat dp(N, Vec(M));

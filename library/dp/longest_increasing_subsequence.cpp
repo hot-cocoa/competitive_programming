@@ -4,7 +4,7 @@ using int64 = long long;
 constexpr static int64 INF = 1LL << 55;
 
 int longest_increasing_subsequence(
-    const std::vector<int> &a
+    const std::vector<int>& a
 )
 {
     int N = a.size();

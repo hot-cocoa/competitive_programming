@@ -48,7 +48,7 @@ private:
         return ret;
     }
 public:
-    Calculator(const std::string &s) : it{s.begin()} {}
+    Calculator(const std::string& s) : it{s.begin()} {}
 
     T exp()
     {

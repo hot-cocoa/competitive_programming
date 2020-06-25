@@ -29,7 +29,7 @@ private:
         low.assign(V, INF);
     }
 
-    void dfs(int v, int prev, int &k)
+    void dfs(int v, int prev, int& k)
     {
         ord[v] = low[v] = k++;
         int cnt = 0;
@@ -56,11 +56,11 @@ private:
     }
 
 public:
-    ArticulationPoints(Graph g) : g{g} {
+    ArticulationPoints(const Graph& g) : g{g} {
         init();
     }
 
-    void dfs(int v, int &k)
+    void dfs(int v, int& k)
     {
         dfs(v, -1, k);
     }

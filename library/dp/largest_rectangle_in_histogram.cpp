@@ -3,7 +3,7 @@
 using int64 = long long;
 
 int64 largest_rectangle_in_histogram(
-    const std::vector<int> &h
+    const std::vector<int>& h
 )
 {
     int N = h.size();

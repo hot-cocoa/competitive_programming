@@ -55,12 +55,12 @@ private:
     }
 
 public:
-    LowestCommonAncestor(Graph g) : g{g} {
+    LowestCommonAncestor(const Graph& g) : g{g} {
         init(g.size());
         build(g.size());
     }
 
-    LowestCommonAncestor(Graph g, std::vector<int> deg) : g{g} {
+    LowestCommonAncestor(const Graph& g, const std::vector<int>& deg) : g{g} {
         init(g.size());
         this->deg = deg;
         build(g.size());

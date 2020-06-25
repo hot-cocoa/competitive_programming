@@ -16,7 +16,7 @@ private:
     Graph g;
     std::vector<int> l, r;
 
-    void dfs(int v, int p, int &k)
+    void dfs(int v, int p, int& k)
     {
         l[v] = k++;
         for (int to : g[v])
@@ -39,7 +39,7 @@ private:
     }
 
 public:
-    EulerTour(Graph g) : g{g} {
+    EulerTour(const Graph& g) : g{g} {
         init(g.size());
         build();
     }

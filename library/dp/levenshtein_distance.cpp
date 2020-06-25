@@ -3,7 +3,7 @@
 
 template<class T>
 T levenshtein_distance(
-    const std::string &s, const std::string &t,
+    const std::string& s, const std::string& t,
     T ins_cost = 1, T rm_cost = 1, T repl_cost = 1
 )
 {

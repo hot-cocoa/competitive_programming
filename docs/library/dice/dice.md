@@ -35,7 +35,7 @@ private:
 
     T at(int idx) const { return x[idx]; }
 
-    bool same_faces(const Dice &d) const
+    bool same_faces(const Dice& d) const
     {
         for (int i = 0; i < size(); i++)
             if (at(i) != d.at(i))
@@ -45,7 +45,7 @@ private:
     }
 
 public:
-    Dice(const std::vector<T> &x) : x{x} {}
+    Dice(const std::vector<T>& x) : x{x} {}
 
     void roll_N() { roll(TOP, FRONT, BACK, BOTTOM); }
     void roll_E() { roll(TOP, LEFT, RIGHT, BOTTOM); }
@@ -80,7 +80,7 @@ public:
 
     int size() const { return x.size(); }
 
-    bool operator == (const Dice &d)
+    bool operator == (const Dice& d)
     {
         if (size() != d.size())
             return false;

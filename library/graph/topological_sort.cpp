@@ -52,7 +52,7 @@ private:
     }
 
 public:
-    TopologicalSort(Graph g) : g{g} {
+    TopologicalSort(const Graph& g) : g{g} {
         init(g.size());
     }
 

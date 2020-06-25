@@ -29,7 +29,7 @@ private:
         low.assign(V, INF);
     }
 
-    void dfs(int v, int prev, int &k)
+    void dfs(int v, int prev, int& k)
     {
         ord[v] = low[v] = k++;
         for (int to : g[v]) {
@@ -51,11 +51,11 @@ private:
     }
 
 public:
-    Bridge(Graph g) : g{g} {
+    Bridge(const Graph& g) : g{g} {
         init();
     }
 
-    void dfs(int v, int &k)
+    void dfs(int v, int& k)
     {
         dfs(v, -1, k);
     }

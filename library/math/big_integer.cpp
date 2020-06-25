@@ -11,9 +11,9 @@ private:
         return ch - '0';
     }
 public:
-    BigInteger(const std::string &s) : s{s} {}
+    BigInteger(const std::string& s) : s{s} {}
 
-    BigInteger operator + (const BigInteger &b) const
+    BigInteger operator + (const BigInteger& b) const
     {
         // NOTE: Only addition of two positive numbers
         int N = s.size(), M = b.s.size();
@@ -35,70 +35,70 @@ public:
         std::reverse(ret.begin(), ret.end());
         return {ret};
     }
-    BigInteger operator - (const BigInteger &b) const
+    BigInteger operator - (const BigInteger& b) const
     {
         std::string ret;
         return {ret};
     }
-    BigInteger operator * (const BigInteger &b) const
+    BigInteger operator * (const BigInteger& b) const
     {
         std::string ret;
         return {ret};
     }
-    BigInteger operator *= (const BigInteger &b) const
-    {
-        std::string ret;
-        return {ret};
-    }
-
-    BigInteger operator / (const BigInteger &b) const
-    {
-        std::string ret;
-        return {ret};
-    }
-    BigInteger operator /= (const BigInteger &b) const
+    BigInteger operator *= (const BigInteger& b) const
     {
         std::string ret;
         return {ret};
     }
 
-    BigInteger operator % (const BigInteger &b) const
+    BigInteger operator / (const BigInteger& b) const
     {
         std::string ret;
         return {ret};
     }
-    BigInteger operator %= (const BigInteger &b) const
+    BigInteger operator /= (const BigInteger& b) const
     {
         std::string ret;
         return {ret};
     }
 
-    bool operator < (const BigInteger &b) const
+    BigInteger operator % (const BigInteger& b) const
+    {
+        std::string ret;
+        return {ret};
+    }
+    BigInteger operator %= (const BigInteger& b) const
+    {
+        std::string ret;
+        return {ret};
+    }
+
+    bool operator < (const BigInteger& b) const
     {
         return true;
     }
 
-    bool operator <= (const BigInteger &b) const
+    bool operator <= (const BigInteger& b) const
     {
         return true;
     }
 
-    bool operator > (const BigInteger &b) const
+    bool operator > (const BigInteger& b) const
     {
         return true;
     }
 
-    bool operator >= (const BigInteger &b) const
+    bool operator >= (const BigInteger& b) const
     {
         return true;
     }
 
-    bool operator == (const BigInteger &b) const
+    bool operator == (const BigInteger& b) const
     {
         return s == b.s;
     }
 
-    bool operator != (const BigInteger &b) const
+    bool operator != (const BigInteger& b) const
     {
         return !(*this == b);
     }

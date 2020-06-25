@@ -36,8 +36,8 @@ private:
 
 public:
     SegmentTree(
-        int N, const T &e,
-        const F &f, const F &g = [](int l, int r){ return r; }) :
+        int N, const T& e,
+        const F& f, const F& g = [](int l, int r){ return r; }) :
         f{f}, g{g}, e{e}
     {
         build(N);

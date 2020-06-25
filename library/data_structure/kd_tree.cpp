@@ -72,7 +72,7 @@ private:
     }
 
 public:
-    KdTree2D(const std::vector<pii> &ps) : ps{ps}
+    KdTree2D(const std::vector<pii>& ps) : ps{ps}
     {
         init();
     }

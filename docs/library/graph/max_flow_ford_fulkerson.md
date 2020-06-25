@@ -38,7 +38,7 @@ private:
             return f;
 
         used[v] = true;
-        for (edge &e : g[v]) {
+        for (edge& e : g[v]) {
             if (!used[e.to] && e.cap > 0) {
                 int d = dfs(e.to, t, std::min(f, e.cap));
                 if (d > 0) {

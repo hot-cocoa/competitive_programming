@@ -35,7 +35,7 @@ private:
 
         while (!q.empty()) {
             int v = q.front(); q.pop();
-            for (edge &e : g[v])
+            for (edge& e : g[v])
                 if (e.cap > 0 && level[e.to] < 0) {
                     level[e.to] = level[v] + 1;
                     q.push(e.to);
@@ -48,8 +48,8 @@ private:
         if (v == t)
             return f;
 
-        for (int &i = iter[v]; i < (int)g[v].size(); i++) {
-            edge &e = g[v][i];
+        for (int& i = iter[v]; i < (int)g[v].size(); i++) {
+            edge& e = g[v][i];
             if (e.cap > 0 && level[v] < level[e.to]) {
                 int d = dfs(e.to, t, std::min(f, e.cap));
                 if (d > 0) {

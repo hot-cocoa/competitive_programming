@@ -23,7 +23,7 @@ private:
     constexpr static double EPS = 1e-8;
 
 public:
-    vec<T> solve(const mat<T> &A, const vec<T> &b)
+    vec<T> solve(const mat<T>& A, const vec<T>& b)
     {
         int N = A.size();
         mat<T> B(N, vec<T>(N + 1));

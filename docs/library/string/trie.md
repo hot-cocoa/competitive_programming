@@ -29,10 +29,10 @@ private:
         nodes.emplace_back(node);
     }
 
-    void insert(const std::string &s, int id)
+    void insert(const std::string& s, int id)
     {
         int curr = 0;
-        for (const auto &c : s) {
+        for (const auto& c : s) {
             if (!nodes.at(curr).next.count(c)) {
                 int n = nodes.size();
                 push();
@@ -49,15 +49,15 @@ public:
     std::vector<Node> nodes;
     Trie() { push(); }
 
-    void insert(const std::string &s)
+    void insert(const std::string& s)
     {
         insert(s, nodes.at(0).exist);
     }
 
-    int find(const std::string &s, int idx = 0)
+    int find(const std::string& s, int idx = 0)
     {
         int curr = idx;
-        for (const auto &c : s) {
+        for (const auto& c : s) {
             if (!nodes.at(curr).next.count(c))
                 return -1;
 

@@ -33,7 +33,7 @@ private:
 
     constexpr static T INF = std::numeric_limits<T>::max() / 2;
 public:
-    BellmanFord(int V, int E, std::vector<Edge<T>> es)
+    BellmanFord(int V, int E, const std::vector<Edge<T>>& es)
         : V{V}, E{E}, es{es} {}
 
     bool find_negative_loop(int s)

@@ -17,7 +17,7 @@ private:
     using State = std::pair<T, int>;
 
 public:
-    T solve(const Graph<T> &g)
+    T solve(const Graph<T>& g)
     {
         std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
         pq.emplace(0, 0);
