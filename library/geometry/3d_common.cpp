@@ -162,3 +162,20 @@ public:
 
 using Line = Segment;
 
+class LineUtil : SegmentUtil {
+public:
+    static double distance_lp(const Line &l, const Point &p)
+    {
+        return PointOperator::abs(p - projection(l, p));
+    }
+
+    static double distance_ll(const Line &a, const Line &b)
+    {
+        Vector v = PointOperator::cross_vec(a.t - a.s, b.t - b.s);
+        Point p = a.s - b.s;
+        if (PointOperator::abs(v) < EPS)
+            return distance_lp(a, b.s);
+
+        return abs(PointOperator::dot(v, p)) / PointOperator::abs(v);
+    }
+};
