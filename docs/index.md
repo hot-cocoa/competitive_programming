@@ -30,6 +30,8 @@
     - [基本要素](./library/geometry/2d_common.md)
     - [円](./library/geometry/circle.md)
     - [多角形](./library/geometry/polygon.md)
+- 3次元幾何
+    - [基本要素](./library/geometry/3d_common.md)
 
 ## Graph
 - [関節点](./library/graph/articulation_points.md)
