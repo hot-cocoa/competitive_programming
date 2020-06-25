@@ -243,7 +243,7 @@ public:
     static bool intersect_ss(const Segment& a, const Segment& b)
     {
         std::vector<Point> s{a.s, a.t}, t{b.s, b.t};
-        const auto &ccw = CounterClockWise::ccw;
+        const auto& ccw = CounterClockWise::ccw;
         return (
             ccw(s[0], s[1], t[0]) * ccw(s[0], s[1], t[1]) <= 0 &&
             ccw(t[0], t[1], s[0]) * ccw(t[0], t[1], s[1]) <= 0
@@ -305,7 +305,7 @@ struct Edge {
     double cost;
     Edge(int to, double cost) : to{to}, cost{cost} {}
 
-    bool operator < (const Edge &e) const
+    bool operator < (const Edge& e) const
     {
         return cost < e.cost;
     }
@@ -408,7 +408,7 @@ public:
     // unverified
     static bool intersect_ll(const Line& a, const Line& b)
     {
-        const auto &cross = PointOperator::cross;
+        const auto& cross = PointOperator::cross;
 
         bool diff_slope = abs(cross(a.t - a.s, b.t - b.s)) > EPS;
         bool same_lines = abs(cross(a.t - a.s, b.t - b.s)) < EPS;

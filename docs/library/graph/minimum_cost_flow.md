@@ -60,7 +60,7 @@ public:
                     continue;
 
                 for (int i = 0; i < (int)g[v].size(); i++) {
-                    edge<T> &e = g[v][i];
+                    edge<T>& e = g[v][i];
                     T nweight = weight[v] + e.cost + h[v] - h[e.to];
                     if (e.cap > 0 && weight[e.to] > nweight) {
                         weight[e.to] = nweight;
@@ -84,7 +84,7 @@ public:
             f -= d;
             res += d * h[t];
             for (int v = t; v != s; v = prevv[v]) {
-                edge<T> &e = g[prevv[v]][preve[v]];
+                edge<T>& e = g[prevv[v]][preve[v]];
                 e.cap -= d;
                 g[v][e.rev].cap += d;
             }

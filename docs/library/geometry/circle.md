@@ -102,7 +102,7 @@ public:
 
     static Circle smallest_enclosing_circle(const std::vector<Point>& ps)
     {
-        const auto &abs = PointOperator::abs;
+        const auto& abs = PointOperator::abs;
         Point p{0, 0};
         for (Point x : ps)
             p = p + x;

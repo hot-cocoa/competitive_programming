@@ -41,7 +41,7 @@ private:
             return dp[S][v] = 0;
 
         T min = INF;
-        for (const auto &e : g[v])
+        for (const auto& e : g[v])
             if (!(S >> e.to & 1))
                 min = std::min(
                           min,

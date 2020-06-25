@@ -48,7 +48,7 @@ public:
 
         std::vector<int> odds;
         for (int i = 0; i < size; i++) {
-            for (const auto &e : g[i])
+            for (const auto& e : g[i])
                 sum += e.weight;
 
             if (g[i].size() & 1)
@@ -73,7 +73,7 @@ public:
                     continue;
 
                 prev[e.dst] = e.src;
-                for (const auto &x : g[e.dst])
+                for (const auto& x : g[e.dst])
                     if (weight[x.dst] > e.weight + x.weight) {
                         weight[x.dst] = e.weight + x.weight;
                         pq.emplace(x.src, x.dst, weight[x.dst]);

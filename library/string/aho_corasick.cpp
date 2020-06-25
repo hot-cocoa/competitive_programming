@@ -18,13 +18,13 @@ private:
 
     PMA *root;
 
-    void build(const std::vector<std::string> &patterns)
+    void build(const std::vector<std::string>& patterns)
     {
         root = {};
         for (int i = 0; i < (int)patterns.size(); i++) {
-            const std::string &pattern = patterns[i];
+            const std::string& pattern = patterns[i];
             PMA *t = root;
-            for (const char &c : pattern) {
+            for (const char& c : pattern) {
                 if (!t->next[c])
                     t->next[c] = {};
 
@@ -54,8 +54,8 @@ private:
 
                 t->next[c]->next[0] = next->next[c];
 
-                const auto &m1 = t->next[c]->matched;
-                const auto &m2 = next->next[c]->matched;
+                const auto& m1 = t->next[c]->matched;
+                const auto& m2 = next->next[c]->matched;
                 std::set_union(
                     m1.begin(), m1.end(),
                     m2.begin(), m2.end(),
@@ -68,21 +68,21 @@ private:
 
 public:
     AhoCorasick() {}
-    AhoCorasick(const std::vector<std::string> &patterns)
+    AhoCorasick(const std::vector<std::string>& patterns)
     {
         build(patterns);
     }
 
-    void set(const std::vector<std::string> &patterns)
+    void set(const std::vector<std::string>& patterns)
     {
         build(patterns);
     }
 
-    std::vector<int> match(const std::string &s)
+    std::vector<int> match(const std::string& s)
     {
         std::vector<int> result{SIZE};
         PMA *pma = root;
-        for (const auto &c : s) {
+        for (const auto& c : s) {
             while (!pma->next[c])
                pma = pma->next[0];
 

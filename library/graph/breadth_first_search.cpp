@@ -42,7 +42,7 @@ public:
         while (!q.empty()) {
             int curr = q.front(); q.pop();
 
-            for (const auto &e : g[curr])
+            for (const auto& e : g[curr])
                 if (update(curr, e.to))
                     q.push(e.to);
         }

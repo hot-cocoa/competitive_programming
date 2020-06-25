@@ -52,7 +52,7 @@ public:
         std::vector<T> weight(g.size(), INF);
         weight[s] = 0;
 
-        const auto &update = [&](const edge<T>& e, const State& s) -> bool
+        const auto& update = [&](const edge<T>& e, const State& s) -> bool
         {
             if (weight[s.v] + e.weight >= weight[e.to])
                 return false;
@@ -66,7 +66,7 @@ public:
             if (weight[curr.v] < curr.weight)
                 continue;
 
-            for (const edge<T> &e : g[curr.v])
+            for (const edge<T>& e : g[curr.v])
                 if (update(e, curr))
                     pq.emplace(e.to, weight[e.to]);
         }

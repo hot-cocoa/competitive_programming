@@ -28,7 +28,7 @@ public:
         UnionFind uf(V);
         std::sort(es.begin(), es.end());
         T total_weight = 0;
-        for (const Edge<T> &e : es)
+        for (const Edge<T>& e : es)
             if (!uf.same(e.u, e.v)) {
                 uf.unite(e.u, e.v);
                 total_weight += e.weight;

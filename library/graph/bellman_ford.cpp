@@ -33,7 +33,7 @@ public:
         while (true) {
             bool update = false;
             cnt++;
-            for (const Edge<T> &e : es) {
+            for (const Edge<T>& e : es) {
                 if (d[e.from] != INF && d[e.to] > d[e.from] + e.cost) {
                     d[e.to] = d[e.from] + e.cost;
                     if (cnt == V)
