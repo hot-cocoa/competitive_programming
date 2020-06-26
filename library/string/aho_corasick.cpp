@@ -16,14 +16,14 @@ private:
         }
     };
 
-    PMA *root;
+    PMA* root;
 
     void build(const std::vector<std::string>& patterns)
     {
         root = {};
         for (int i = 0; i < (int)patterns.size(); i++) {
             const std::string& pattern = patterns[i];
-            PMA *t = root;
+            PMA* t = root;
             for (const char& c : pattern) {
                 if (!t->next[c])
                     t->next[c] = {};
@@ -43,12 +43,12 @@ private:
                 root->next[c] = root;
 
         while (!que.empty()) {
-            PMA *t = que.front(); que.pop();
+            PMA* t = que.front(); que.pop();
             for (char c = 'a'; c <= 'z'; c++) {
                 if (!t->next[c])
                     continue;
 
-                PMA *next = t->next[0];
+                PMA* next = t->next[0];
                 while (!next->next[c])
                     next = next->next[0];
 
@@ -81,7 +81,7 @@ public:
     std::vector<int> match(const std::string& s)
     {
         std::vector<int> result{SIZE};
-        PMA *pma = root;
+        PMA* pma = root;
         for (const auto& c : s) {
             while (!pma->next[c])
                pma = pma->next[0];
