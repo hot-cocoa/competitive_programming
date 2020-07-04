@@ -72,6 +72,7 @@
 - [素因数分解](./library/math/prime_factorize.md)
 
 ## String
+- [エイホーコラシック](./library/string/aho_corasick.md)
 - [電卓](./library/string/calculator.md)
 - [最長回文(Manacher)](./library/string/longest_palindrome.md)
 - [ローリングハッシュ](./library/string/rolling_hash.md)
