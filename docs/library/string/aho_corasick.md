@@ -30,13 +30,13 @@ private:
 
     void build(const std::vector<std::string>& patterns)
     {
-        root = {};
+        root = new PMA;
         for (int i = 0; i < (int)patterns.size(); i++) {
             const std::string& pattern = patterns[i];
             PMA* t = root;
             for (const char& c : pattern) {
                 if (!t->next[c])
-                    t->next[c] = {};
+                    t->next[c] = new PMA;
 
                 t = t->next[c];
             }
@@ -44,16 +44,18 @@ private:
         }
 
         std::queue<PMA*> que;
-        for (auto c = 'a'; c <= 'z'; c++)
+        for (auto c = 'a'; c <= 'z'; c++) {
             if (root->next[c]) {
                 root->next[c]->next[0] = root;
                 que.emplace(root->next[c]);
             }
             else
                 root->next[c] = root;
+        }
 
         while (!que.empty()) {
             PMA* t = que.front(); que.pop();
+
             for (char c = 'a'; c <= 'z'; c++) {
                 if (!t->next[c])
                     continue;
@@ -90,7 +92,7 @@ public:
 
     std::vector<int> match(const std::string& s)
     {
-        std::vector<int> result{SIZE};
+        std::vector<int> result(SIZE);
         PMA* pma = root;
         for (const auto& c : s) {
             while (!pma->next[c])
