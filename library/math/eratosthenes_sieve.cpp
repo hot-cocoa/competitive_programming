@@ -7,6 +7,7 @@ private:
     void build(int N)
     {
         prime.assign(N, true);
+        prime[0] = prime[1] = false;
         for (int i = 2; i * i < N; i++)
             if (prime[i])
                 for (int j = i * 2; j < N; j += i)
