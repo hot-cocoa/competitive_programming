@@ -27,7 +27,7 @@ template<class T>
 class Dijkstra {
 private:
     Graph<T> g;
-    constexpr static T INF = std::numeric_limits<T>::max() / 2;
+    const T INF = std::numeric_limits<T>::max() / 2;
 
     struct State {
         int v;
