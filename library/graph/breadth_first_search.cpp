@@ -16,8 +16,8 @@ using Graph = std::vector<std::vector<Edge<T>>>;
 template<class T>
 class BreadthFirstSearch {
 private:
-    constexpr static int INF = std::numeric_limits<T>::max() / 2;
-    constexpr static T WEIGHT = 1;
+    const T INF = std::numeric_limits<T>::max() / 2;
+    const T WEIGHT = 1;
     const Graph<T> g;
 
 public:
