@@ -25,16 +25,14 @@ public:
         std::vector<bool> visited(g.size());
         T total_weight = 0;
         while (!pq.empty()) {
-            State p = pq.top(); pq.pop();
-
-            int curr = p.second;
+            auto [weight, curr] = pq.top(); pq.pop();
             if (visited[curr])
                 continue;
 
             visited[curr] = true;
-            total_weight += p.first;
+            total_weight += weight;
 
-            for (auto e : g[curr])
+            for (const auto& e : g[curr])
                 pq.emplace(e.weight, e.to);
         }
 
