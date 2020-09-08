@@ -62,16 +62,21 @@ public:
         };
 
         while (!pq.empty()) {
-            State curr = pq.top(); pq.pop();
-            if (weight[curr.v] < curr.weight)
+            auto [v, w] = pq.top(); pq.pop();
+            if (weight[v] < w)
                 continue;
 
-            for (const edge<T>& e : g[curr.v])
-                if (update(e, curr))
+            for (const edge<T>& e : g[v])
+                if (update(e, {v, w}))
                     pq.emplace(e.to, weight[e.to]);
         }
 
         return weight;
+    }
+
+    bool is_updated(T w)
+    {
+        return w != INF;
     }
 };
 ```
