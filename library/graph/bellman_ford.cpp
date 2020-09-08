@@ -5,56 +5,64 @@ template<class T>
 struct Edge {
     int from;
     int to;
-    T cost;
+    T weight;
 
-    Edge(int from, int to, T cost)
-        : from{from}, to{to}, cost{cost} {}
+    Edge(int from, int to, T weight)
+        : from{from}, to{to}, weight{weight} {}
 };
+
+template<class T>
+using Edges = std::vector<Edge<T>>;
 
 template<class T>
 class BellmanFord {
 private:
     int V;
     int E;
-    std::vector<Edge<T>> es;
-    std::vector<T> d;
+    Edges<T> es;
+    std::vector<T> weight;
 
     constexpr static T INF = std::numeric_limits<T>::max() / 2;
 public:
-    BellmanFord(int V, int E, const std::vector<Edge<T>>& es)
+    BellmanFord(int V, int E, const Edges<T>& es)
         : V{V}, E{E}, es{es} {}
 
     bool find_negative_loop(int s)
     {
-        d.assign(V, INF);
-        d[s] = 0;
+        weight.assign(V, INF);
+        weight[s] = 0;
 
-        int cnt = 0;
-        while (true) {
-            bool update = false;
-            cnt++;
-            for (const Edge<T>& e : es) {
-                if (d[e.from] != INF && d[e.to] > d[e.from] + e.cost) {
-                    d[e.to] = d[e.from] + e.cost;
-                    if (cnt == V)
+        int used_cnt = 0;
+        bool updated;
+        do {
+            updated = false;
+            used_cnt++;
+            for (const auto& [from, to, w] : es) {
+                if (weight[from] != INF &&
+                    weight[to] > weight[from] + w) {
+
+                    weight[to] = weight[from] + w;
+                    if (used_cnt == V)
                         return true;
 
-                    update = true;
+                    updated = true;
                 }
             }
-
-            if (!update)
-                break;
-        }
+        } while (updated);
 
         return false;
     }
 
-    std::vector<T> calc_shortest_path(int s)
+    std::vector<T> shortest_path(int s)
     {
         if (find_negative_loop(s))
             return {};
 
-        return d;
+        return weight;
+    }
+
+    bool is_updated(T w)
+    {
+        return w != INF;
     }
 };
