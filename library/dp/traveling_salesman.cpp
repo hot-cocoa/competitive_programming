@@ -30,11 +30,11 @@ private:
             return dp[S][v] = 0;
 
         T min = INF;
-        for (const auto& e : g[v])
-            if (!(S >> e.to & 1))
+        for (const auto& [to, weight] : g[v])
+            if (!(S >> to & 1))
                 min = std::min(
                           min,
-                          rec(S | (1 << e.to), e.to) + e.weight
+                          rec(S | (1 << to), to) + weight
                       );
 
         return dp[S][v] = min;
@@ -48,7 +48,7 @@ public:
 
     void add_edge(int src, int dst, T weight)
     {
-        g.emplace_back(src, dst, weight);
+        g[src].emplace_back(dst, weight);
     }
 
     T solve()
