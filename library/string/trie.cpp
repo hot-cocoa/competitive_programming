@@ -22,16 +22,16 @@ private:
     {
         int curr = 0;
         for (const auto& c : s) {
-            if (!nodes.at(curr).next.count(c)) {
+            if (!nodes[curr].next.count(c)) {
                 int n = nodes.size();
                 push();
-                nodes.at(curr).next.emplace(c, n);
+                nodes[curr].next.emplace(c, n);
             }
-            nodes.at(curr).exist++;
-            curr = nodes.at(curr).next.at(c);
+            nodes[curr].exist++;
+            curr = nodes[curr].next[c];
         }
-        nodes.at(curr).exist++;
-        nodes.at(curr).accepts.emplace_back(id);
+        nodes[curr].exist++;
+        nodes[curr].accepts.emplace_back(id);
     }
 
 public:
@@ -40,17 +40,17 @@ public:
 
     void insert(const std::string& s)
     {
-        insert(s, nodes.at(0).exist);
+        insert(s, nodes[0].exist);
     }
 
     int find(const std::string& s, int idx = 0)
     {
         int curr = idx;
         for (const auto& c : s) {
-            if (!nodes.at(curr).next.count(c))
+            if (!nodes[curr].next.count(c))
                 return -1;
 
-            curr = nodes.at(curr).next.at(c);
+            curr = nodes[curr].next[c];
         }
         return curr;
     }
