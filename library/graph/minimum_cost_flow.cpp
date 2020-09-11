@@ -5,9 +5,9 @@
 template<class T>
 struct edge {
     int to, cap, rev;
-    T cost;
-    edge(int to, int cap, T cost, int rev) :
-        to{to}, cap{cap}, cost{cost}, rev{rev} {}
+    T weight;
+    edge(int to, int cap, T weight, int rev) :
+        to{to}, cap{cap}, weight{weight}, rev{rev} {}
 };
 
 template<class T>
@@ -24,15 +24,15 @@ public:
         g.resize(V);
     }
 
-    void add_edge(int from, int to, int cap, T cost)
+    void add_edge(int from, int to, int cap, T weight)
     {
-        g[from].emplace_back(to, cap, cost, g[to].size());
-        g[to].emplace_back(from, 0, -cost, g[from].size() - 1);
+        g[from].emplace_back(to, cap, weight, g[to].size());
+        g[to].emplace_back(from, 0, -weight, g[from].size() - 1);
     }
 
     T primal_dual(int s, int t, int f)
     {
-        T res = 0;
+        T min_cost = 0;
         while (f > 0) {
             // (weight, node)
             std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
@@ -44,20 +44,18 @@ public:
             weight[s] = 0;
 
             while (!pq.empty()) {
-                State p = pq.top(); pq.pop();
-                int v = p.second;
-
-                if (weight[v] < p.first)
+                auto [tw, v] = pq.top(); pq.pop();
+                if (weight[v] < tw)
                     continue;
 
                 for (int i = 0; i < (int)g[v].size(); i++) {
-                    edge<T>& e = g[v][i];
-                    T nweight = weight[v] + e.cost + h[v] - h[e.to];
-                    if (e.cap > 0 && weight[e.to] > nweight) {
-                        weight[e.to] = nweight;
-                        prevv[e.to] = v;
-                        preve[e.to] = i;
-                        pq.emplace(weight[e.to], e.to);
+                    auto& [to, cap, rev, w] = g[v][i];
+                    T nweight = weight[v] + w + h[v] - h[to];
+                    if (cap > 0 && weight[to] > nweight) {
+                        weight[to] = nweight;
+                        prevv[to] = v;
+                        preve[to] = i;
+                        pq.emplace(weight[to], to);
                     }
                 }
             }
@@ -73,14 +71,14 @@ public:
                 d = std::min(d, g[prevv[v]][preve[v]].cap);
 
             f -= d;
-            res += d * h[t];
+            min_cost += d * h[t];
             for (int v = t; v != s; v = prevv[v]) {
-                edge<T>& e = g[prevv[v]][preve[v]];
-                e.cap -= d;
-                g[v][e.rev].cap += d;
+                auto& [to, cap, rev, w] = g[prevv[v]][preve[v]];
+                cap -= d;
+                g[v][rev].cap += d;
             }
         }
 
-        return res;
+        return min_cost;
     }
 };
