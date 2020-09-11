@@ -68,15 +68,15 @@ public:
             std::priority_queue<Edge<T>> pq;
             pq.emplace(-1, s, 0);
             while (!pq.empty()) {
-                const auto e = pq.top(); pq.pop();
-                if (prev[e.dst] != -2)
+                const auto [src, dst, w] = pq.top(); pq.pop();
+                if (prev[dst] != -2)
                     continue;
 
-                prev[e.dst] = e.src;
-                for (const auto& x : g[e.dst])
-                    if (weight[x.dst] > e.weight + x.weight) {
-                        weight[x.dst] = e.weight + x.weight;
-                        pq.emplace(x.src, x.dst, weight[x.dst]);
+                prev[dst] = src;
+                for (const auto& [nsrc, ndst, nw] : g[dst])
+                    if (weight[ndst] > w + nw) {
+                        weight[ndst] = w + nw;
+                        pq.emplace(nsrc, ndst, weight[ndst]);
                     }
             }
 
