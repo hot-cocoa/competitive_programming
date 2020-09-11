@@ -13,35 +13,37 @@ O(V)
 template<class T>
 using Graph = std::vector<std::vector<T>>;
 
-class edge {
+template<class T>
+class Edge {
 public:
-    int to, weight;
-    edge(int to, int weight) : to{to}, weight{weight} {}
+    int to;
+    T weight;
+    Edge(int to, T weight) : to{to}, weight{weight} {}
 };
 
 template<class Weight>
 class TreeDiameter {
-    Graph<edge> g;
+    Graph<Edge<Weight>> g;
     using Result = std::pair<Weight, int>;
 
     Result dfs(int par, int curr)
     {
         Result ret(0, curr);
-        for (const edge& e : g[curr]) {
-            if (e.to == par)
+        for (const auto& [to, weight] : g[curr]) {
+            if (to == par)
                 continue;
 
-            Result t = dfs(curr, e.to);
-            t.first += e.weight;
+            Result t = dfs(curr, to);
+            t.first += weight;
             ret = std::max(ret, t);
         }
         return ret;
     }
 
 public:
-    TreeDiameter(const Graph<edge>& g) : g{g} {}
+    TreeDiameter(const Graph<Edge<Weight>>& g) : g{g} {}
 
-    Weight tree_diameter()
+    Weight solve()
     {
         Result r = dfs(-1, 0);
         Result t = dfs(-1, r.second);
